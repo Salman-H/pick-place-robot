@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: kuka_arm
+    relative_path: urdf/kr210.urdf.xacro
+  SRDF:
+    relative_path: config/kuka_arm.srdf
+  CONFIG:
+    author_name: harsh
+    author_email: harsh@electricmovement.com
+    generated_timestamp: 1492721541

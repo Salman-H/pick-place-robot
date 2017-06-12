@@ -20,18 +20,18 @@ Once again check if the correct version was installed:
 ```sh
 $ gazebo --version
 ```
-### For the rest of this setup, ros_ws is the name of active ROS Workspace, if your workspace name is different, change the commands accordingly
+### For the rest of this setup, catkin_ws is the name of active ROS Workspace, if your workspace name is different, change the commands accordingly
 
 If you do not have an active ROS workspace, you can create one by:
 ```sh
-$ mkdir -p ~/ros_ws/src
-$ cd ~/ros_ws/
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/
 $ catkin_make
 ```
 
 Now that you have a workspace, clone or download this repo into the **src** directory of your workspace:
 ```sh
-$ cd ~/ros_ws/src
+$ cd ~/catkin_ws/src
 $ git clone https://github.com/udacity/test_repo_robond_robotic_arm_pick_and_place.git
 $ mv test_repo_robond_robotic_arm_pick_and_place/kinematics_project/ .
 $ sudo rm -r test_repo_robond_robotic_arm_pick_and_place/
@@ -40,24 +40,24 @@ $ sudo rm -r test_repo_robond_robotic_arm_pick_and_place/
 Now from a terminal window:
 
 ```sh
-$ cd ~/ros_ws
+$ cd ~/catkin_ws
 $ rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y
-$ cd ~/ros_ws/src/kinematics_project/kuka_arm/scripts
+$ cd ~/catkin_ws/src/kinematics_project/kuka_arm/scripts
 $ sudo chmod +x target_spawn.py
 $ sudo chmod +x IK_server.py
 $ sudo chmod +x safe_spawner.sh
 ```
 Build the project:
 ```sh
-$ cd ~/ros_ws
+$ cd ~/catkin_ws
 $ catkin_make
 ```
 
 Add following to your .bashrc file
 ```
-export GAZEBO_MODEL_PATH=~/ros_ws/src/kinematics_project/kuka_arm/models
+export GAZEBO_MODEL_PATH=~/catkin_ws/src/kinematics_project/kuka_arm/models
 
-source ~/ros_ws/devel/setup.bash
+source ~/catkin_ws/devel/setup.bash
 ```
 
 For demo mode make sure the **demo** flag is set to _"true"_ in `inverse_kinematics.launch` file under /kinematics_project/kuka_arm/launch
@@ -66,13 +66,13 @@ In addition, you can also control the spawn location of the target object in the
 
 You can launch the project by
 ```sh
-$ cd ~/ros_ws/src/kinematics_project/kuka_arm/scripts
+$ cd ~/catkin_ws/src/kinematics_project/kuka_arm/scripts
 $ ./safe_spawner.sh
 ```
 
 If you are running in demo mode, this is all you need. To run your own Inverse Kinematics code change the **demo** flag described above to _"false"_ and run your code (once the project has successfully loaded) by:
 ```sh
-$ cd ~/ros_ws/src/kinematics_project/kuka_arm/scripts
+$ cd ~/catkin_ws/src/kinematics_project/kuka_arm/scripts
 $ rosrun kuka_arm IK_server.py
 ```
 Once Gazebo and rviz are up and running, make sure you see following in the gazebo world:

@@ -28,6 +28,17 @@ from mpmath import *
 from sympy import *
 
 
+def get_transform(alpha, a, d, q):
+    """Define matrix for homogeneous transforms between adjacent links."""
+    tf_matrix = Matrix([
+        [           cos(q),            -sin(q),            0,              a],
+        [sin(q)*cos(alpha),  cos(q)*cos(alpha),  -sin(alpha),  -sin(alpha)*d],
+        [sin(q)*sin(alpha),  cos(q)*sin(alpha),   cos(alpha),   cos(alpha)*d],
+        [                0,                  0,            0,              1]
+     ])
+    return tf_matrix
+
+
 def handle_calculate_IK(req):
     """Handle request from a CalculateIK type service."""
     rospy.loginfo("Received %s eef-poses from the plan" % len(req.poses))

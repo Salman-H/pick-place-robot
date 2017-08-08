@@ -35,7 +35,14 @@ def handle_calculate_IK(req):
         print "No valid poses received"
         return -1
     else:
-        # FK code
+        # FORWARD KINEMATICS
+
+        # Define DH parameter symbols
+        alpha0, alpha1, alpha2, alpha3, \
+        alpha4, alpha5, alpha6 = symbols('alpha0:7')  # joint z-axes angles
+        a0, a1, a2, a3, a4, a5, a6 = symbols('a0:7')  # link z-axes offsets
+        d1, d2, d3, d4, d5, d6, d7 = symbols('d1:8')  # link x-axes offsets
+        q1, q2, q3, q4, q5, q6, q7 = symbols('q1:8')  # joint x-axes angles
 
         # Initialize service response
         joint_trajectory_list = []

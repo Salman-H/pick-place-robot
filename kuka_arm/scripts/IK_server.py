@@ -79,12 +79,26 @@ def handle_calculate_IK(req):
         t0_G = t0_1 * t1_2 * t2_3 * t3_4 * t4_5 * t5_6 * t6_G
         t0_G = t0_G.subs(DH_TABLE)
 
-        # Initialize service response
+        # Initialize service response consisting of a list of
+        # joint trajectory positions (joint angles) corresponding
+        # to a given gripper pose
         joint_trajectory_list = []
+
+        # For each gripper pose a response of six joint angles is computed
         for x in xrange(0, len(req.poses)):
             joint_trajectory_point = JointTrajectoryPoint()
+            # INVERSE KINEMATICS
 
-            # IK code
+            # Extract gripper pose(position and orientation) from IK request
+            # Docs: https://github.com/ros/geometry/blob/indigo-devel/
+            # tf/src/tf/transformations.py#L1089
+            px = req.poses[x].position.x
+            py = req.poses[x].position.y
+            pz = req.poses[x].position.z
+            (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(
+                [req.poses[x].orientation.x, req.poses[x].orientation.y,
+                 req.poses[x].orientation.z, req.poses[x].orientation.w]
+                )
 
             # Populate response for the IK request
             joint_trajectory_point.positions = [theta1, theta2, theta3,

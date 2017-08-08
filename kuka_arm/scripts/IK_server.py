@@ -72,7 +72,12 @@ def handle_calculate_IK(req):
         t3_4 = get_transform(alpha3, a3, d4, q4)
         t4_5 = get_transform(alpha4, a4, d5, q5)
         t5_6 = get_transform(alpha5, a5, d6, q6)
-        t6_G = get_transform(alpha6, a6, d7, q7)
+        t6_G = get_transform(alpha6, a6, dG, qG)
+
+        # Create overall transform between base frame and gripper(G) by
+        # composing the individual link transforms
+        t0_G = t0_1 * t1_2 * t2_3 * t3_4 * t4_5 * t5_6 * t6_G
+        t0_G = t0_G.subs(DH_TABLE)
 
         # Initialize service response
         joint_trajectory_list = []

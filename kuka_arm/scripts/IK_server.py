@@ -1,15 +1,24 @@
 #!/usr/bin/env python
+"""
+ROS node for Inverse Kinematic analyis of the KUKA KR210 robot arm.
 
-# Copyright (C) 2017 Electric Movement Inc.
-#
-# This file is part of Robotic Arm: Pick and Place project for Udacity
-# Robotics nano-degree program
-#
-# All Rights Reserved.
+Receives end-effector (gripper) poses from the KR210 simulator and performs
+Inverse Kinematics, providing a response to the simulator with calculated
+joint variable values (joint angles in this case).
 
-# Author: Harsh Pandya
 
-# import modules
+Copyright (c) 2017 Electric Movement Inc.
+
+This file is part of Robotic Arm: Pick and Place project for Udacity
+Robotics nano-degree program
+
+All Rights Reserved.
+
+"""
+
+__author__ = 'Salman Hashmi, Ryan Keenan, Harsh Pandya'
+
+
 import rospy
 import tf
 from kuka_arm.srv import *
@@ -20,6 +29,7 @@ from sympy import *
 
 
 def handle_calculate_IK(req):
+    """Handle request from a CalculateIK type service."""
     rospy.loginfo("Received %s eef-poses from the plan" % len(req.poses))
     if len(req.poses) < 1:
         print "No valid poses received"
@@ -45,7 +55,7 @@ def handle_calculate_IK(req):
 
 
 def IK_server():
-    # initialize node and declare calculate_ik service
+    """Initialize IK_server ROS node and declare calculate_ik service."""
     rospy.init_node('IK_server')
     s = rospy.Service('calculate_ik', CalculateIK, handle_calculate_IK)
     print "Ready to receive an IK request"

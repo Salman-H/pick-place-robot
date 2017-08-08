@@ -62,7 +62,17 @@ def handle_calculate_IK(req):
                     alpha3: -pi/2,  a3: -0.054,  d4:  1.50,  q4:      q4,
                     alpha4:  pi/2,  a4:      0,  d5:     0,  q5:      q5,
                     alpha5: -pi/2,  a5:      0,  d6:     0,  q6:      q6,
-                    alpha6:     0,  a6:      0,  d7: 0.303,  q7:       0}
+                    alpha6:     0,  a6:      0,  dG: 0.303,  qG:       0}
+
+        # Compute individual transforms between adjacent links
+        # T(i-1)_i = Rx(alpha(i-1)) * Dx(alpha(i-1)) * Rz(theta(i)) * Dz(d(i))
+        t0_1 = get_transform(alpha0, a0, d1, q1)
+        t1_2 = get_transform(alpha1, a1, d2, q2)
+        t2_3 = get_transform(alpha2, a2, d3, q3)
+        t3_4 = get_transform(alpha3, a3, d4, q4)
+        t4_5 = get_transform(alpha4, a4, d5, q5)
+        t5_6 = get_transform(alpha5, a5, d6, q6)
+        t6_G = get_transform(alpha6, a6, d7, q7)
 
         # Initialize service response
         joint_trajectory_list = []

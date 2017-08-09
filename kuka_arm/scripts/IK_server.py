@@ -126,6 +126,13 @@ def handle_calculate_IK(req):
             # Compute gripper pose w.r.t base-link using extrinsic rotations
             R_g = get_Rz(yaw) * get_Ry(pitch) * get_Rx(roll)
 
+            # Align gripper frames in URDF vs DH params through a sequence of
+            # intrinsic rotations: 180 deg yaw and -90 deg pitch
+            R_error = get_Rz(radians(180)) * get_Ry(radians(-90))
+
+            # Account for this frame alignment error in gripper pose
+            R_g = R_g * R_error
+
             # Populate response for the IK request
             joint_trajectory_point.positions = [theta1, theta2, theta3,
                                                 theta4, theta5, theta6]

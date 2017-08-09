@@ -111,6 +111,7 @@ def handle_calculate_IK(req):
         # For each gripper pose a response of six joint angles is computed
         for x in xrange(0, len(req.poses)):
             joint_trajectory_point = JointTrajectoryPoint()
+
             # INVERSE KINEMATICS
 
             # Extract gripper pose(position and orientation) from IK request
@@ -123,15 +124,25 @@ def handle_calculate_IK(req):
                 [req.poses[x].orientation.x, req.poses[x].orientation.y,
                  req.poses[x].orientation.z, req.poses[x].orientation.w]
                 )
-            # Compute gripper pose w.r.t base-link using extrinsic rotations
+            # Compute gripper pose w.r.t base frame using extrinsic rotations
             R_g = get_Rz(yaw) * get_Ry(pitch) * get_Rx(roll)
 
             # Align gripper frames in URDF vs DH params through a sequence of
-            # intrinsic rotations: 180 deg yaw and -90 deg pitch
+            # intrinsic rotations: 180 deg yaw and -90 deg pitch and account
+            # for this frame alignment error in gripper pose
             R_error = get_Rz(radians(180)) * get_Ry(radians(-90))
-
-            # Account for this frame alignment error in gripper pose
             R_g = R_g * R_error
+
+            # Compute Wrist Center position w.r.t to base frame
+            # The displacement from WC to gripper is a translation along zG of
+            # magnitude dG w.r.t base frame(Refer to DH Table)
+            Z_g = R_g[:, 2]  # z-axis orientation (col 3) from gripper pose
+            wc_x = px
+            wc_y = py
+            wc_z = pz - DH_TABLE[dG]*Z_g
+            WC = Matrix([[wc_x],
+                         [wc_y],
+                         [wc_z]])
 
             # Populate response for the IK request
             joint_trajectory_point.positions = [theta1, theta2, theta3,

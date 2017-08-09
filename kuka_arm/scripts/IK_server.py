@@ -28,6 +28,30 @@ from mpmath import *
 from sympy import *
 
 
+def get_Rx(q):
+    """Define matrix for rotation (roll) about x axis."""
+    Rx = Matrix([[1,      0,       0],
+                 [0, cos(q), -sin(q)],
+                 [0, sin(q),  cos(q)]])
+    return Rx
+
+
+def get_Ry(q):
+    """Define matrix for rotation (pitch) about y axis."""
+    Ry = Matrix([[cos(q),  0, sin(q)],
+                 [     0,  1,      0],
+                 [-sin(q), 0, cos(q)]])
+    return Ry
+
+
+def get_Rz(q):
+    """Define matrix for rotation (yaw) about z axis."""
+    Rz = Matrix([[cos(q), -sin(q), 0],
+                 [sin(q),  cos(q), 0],
+                 [     0,       0, 1]])
+    return Rz
+
+
 def get_transform(alpha, a, d, q):
     """Define matrix for homogeneous transforms between adjacent links."""
     tf_matrix = Matrix([

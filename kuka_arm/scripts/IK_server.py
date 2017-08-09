@@ -123,6 +123,8 @@ def handle_calculate_IK(req):
                 [req.poses[x].orientation.x, req.poses[x].orientation.y,
                  req.poses[x].orientation.z, req.poses[x].orientation.w]
                 )
+            # Compute gripper pose w.r.t base-link using extrinsic rotations
+            R_g = get_Rz(yaw) * get_Ry(pitch) * get_Rx(roll)
 
             # Populate response for the IK request
             joint_trajectory_point.positions = [theta1, theta2, theta3,

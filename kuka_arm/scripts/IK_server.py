@@ -52,15 +52,15 @@ def get_Rz(q):
     return Rz
 
 
-def get_transform(alpha, a, d, q):
+def get_TF(alpha, a, d, q):
     """Define matrix for homogeneous transforms between adjacent links."""
-    tf_matrix = Matrix([
+    Ti_j = Matrix([
         [           cos(q),            -sin(q),            0,              a],
         [sin(q)*cos(alpha),  cos(q)*cos(alpha),  -sin(alpha),  -sin(alpha)*d],
         [sin(q)*sin(alpha),  cos(q)*sin(alpha),   cos(alpha),   cos(alpha)*d],
         [                0,                  0,            0,              1]
      ])
-    return tf_matrix
+    return Ti_j
 
 
 def handle_calculate_IK(req):
@@ -80,28 +80,28 @@ def handle_calculate_IK(req):
         q1, q2, q3, q4, q5, q6, q7 = symbols('q1:8')  # joint x-axes angles
 
         # Construct DH Table with measurements from 'kr210.urdf.xacro' file
-        DH_TABLE = {alpha0:     0,  a0:      0,  d1:  0.75,  q1:      q1,
-                    alpha1: -pi/2,  a1:   0.35,  d2:     0,  q2: q2-pi/2,
-                    alpha2:     0,  a2:   1.25,  d3:     0,  q3:      q3,
-                    alpha3: -pi/2,  a3: -0.054,  d4:  1.50,  q4:      q4,
-                    alpha4:  pi/2,  a4:      0,  d5:     0,  q5:      q5,
-                    alpha5: -pi/2,  a5:      0,  d6:     0,  q6:      q6,
-                    alpha6:     0,  a6:      0,  dG: 0.303,  qG:       0}
+        DH = {alpha0:     0,  a0:      0,  d1:  0.75,  q1:      q1,
+              alpha1: -pi/2,  a1:   0.35,  d2:     0,  q2: q2-pi/2,
+              alpha2:     0,  a2:   1.25,  d3:     0,  q3:      q3,
+              alpha3: -pi/2,  a3: -0.054,  d4:  1.50,  q4:      q4,
+              alpha4:  pi/2,  a4:      0,  d5:     0,  q5:      q5,
+              alpha5: -pi/2,  a5:      0,  d6:     0,  q6:      q6,
+              alpha6:     0,  a6:      0,  dG: 0.303,  qG:       0}
 
         # Compute individual transforms between adjacent links
         # T(i-1)_i = Rx(alpha(i-1)) * Dx(alpha(i-1)) * Rz(theta(i)) * Dz(d(i))
-        t0_1 = get_transform(alpha0, a0, d1, q1)
-        t1_2 = get_transform(alpha1, a1, d2, q2)
-        t2_3 = get_transform(alpha2, a2, d3, q3)
-        t3_4 = get_transform(alpha3, a3, d4, q4)
-        t4_5 = get_transform(alpha4, a4, d5, q5)
-        t5_6 = get_transform(alpha5, a5, d6, q6)
-        t6_G = get_transform(alpha6, a6, dG, qG)
+        T0_1 = get_TF(alpha0, a0, d1, q1)
+        T1_2 = get_TF(alpha1, a1, d2, q2)
+        T2_3 = get_TF(alpha2, a2, d3, q3)
+        T3_4 = get_TF(alpha3, a3, d4, q4)
+        T4_5 = get_TF(alpha4, a4, d5, q5)
+        T5_6 = get_TF(alpha5, a5, d6, q6)
+        T6_G = get_TF(alpha6, a6, dG, qG)
 
         # Create overall transform between base frame and gripper(G) by
         # composing the individual link transforms
-        t0_G = t0_1 * t1_2 * t2_3 * t3_4 * t4_5 * t5_6 * t6_G
-        t0_G = t0_G.subs(DH_TABLE)
+        T0_G = T0_1 * T1_2 * T2_3 * T3_4 * T4_5 * T5_6 * T6_G
+        T0_G = T0_G.subs(DH)
 
         # Initialize service response consisting of a list of
         # joint trajectory positions (joint angles) corresponding
@@ -114,35 +114,32 @@ def handle_calculate_IK(req):
 
             # INVERSE KINEMATICS
 
-            # Extract gripper pose(position and orientation) from IK request
+            # Extract gripper pose (position and orientation) from IK request
             # Docs: https://github.com/ros/geometry/blob/indigo-devel/
             # tf/src/tf/transformations.py#L1089
-            px = req.poses[x].position.x
-            py = req.poses[x].position.y
-            pz = req.poses[x].position.z
+            gx = req.poses[x].position.x
+            gy = req.poses[x].position.y
+            gz = req.poses[x].position.z
             (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(
                 [req.poses[x].orientation.x, req.poses[x].orientation.y,
                  req.poses[x].orientation.z, req.poses[x].orientation.w]
                 )
             # Compute gripper pose w.r.t base frame using extrinsic rotations
-            R_g = get_Rz(yaw) * get_Ry(pitch) * get_Rx(roll)
+            Rg = get_Rz(yaw) * get_Ry(pitch) * get_Rx(roll)
 
             # Align gripper frames in URDF vs DH params through a sequence of
             # intrinsic rotations: 180 deg yaw and -90 deg pitch and account
             # for this frame alignment error in gripper pose
-            R_error = get_Rz(radians(180)) * get_Ry(radians(-90))
-            R_g = R_g * R_error
+            Rerror = get_Rz(radians(180)) * get_Ry(radians(-90))
+            Rg = Rg * Rerror
 
             # Compute Wrist Center position w.r.t to base frame
             # The displacement from WC to gripper is a translation along zG of
-            # magnitude dG w.r.t base frame(Refer to DH Table)
-            Z_g = R_g[:, 2]  # z-axis orientation (col 3) from gripper pose
-            wc_x = px
-            wc_y = py
-            wc_z = pz - DH_TABLE[dG]*Z_g
-            WC = Matrix([[wc_x],
-                         [wc_y],
-                         [wc_z]])
+            # magnitude dG w.r.t base frame (Refer to DH Table)
+            Zg = Rg[:, 2]  # z-axis orientation (col 3) from gripper pose
+            wcx = gx
+            wcy = gy
+            wcz = gz - DH[dG]*Zg
 
             # Populate response for the IK request
             joint_trajectory_point.positions = [theta1, theta2, theta3,

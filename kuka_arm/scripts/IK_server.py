@@ -141,6 +141,25 @@ def handle_calculate_IK(req):
             wcy = gy
             wcz = gz - DH[dG]*Zg
 
+            # Use a geometric IK method to calculate angles theta 1,2,3 of
+            # joints 1,2,3 that control WC position:
+
+            # theta1 is calculated by viewing joint 1 and arm from top-down
+            theta1 = atan2(wcy, wcx)
+
+            # theta2,3 are calculated using cosine law on a triangle with edges
+            # at joints 1,2 and WC viewed from side
+            wcz_2 = wcz - DH[d1]                    # WC z-component from j2
+            wcx_2 = sqrt(wcx**2 + wcy**2) - DH[a1]  # WC x-component from j2
+            sideA = DH[a2]                          # joints 2-3 link length
+            sideB = DH[d4]                          # joints 3-WC link length
+            sideC = sqrt(wcx_2**2 + wcz_2**2)       # joints 2-WC link length
+            angleB = acos((sideC**2 + sideA**2 - sideB**2) / (2*sideC*sideA))
+            angleC = acos((sideA**2 + sideB**2 - sideC**2) / (2*sideA*sideB))
+
+            theta2 = radians(90) - angleB - atan2(wcz_2, wcx_2)
+            theta3 = radians(90) - angleC
+
             # Populate response for the IK request
             joint_trajectory_point.positions = [theta1, theta2, theta3,
                                                 theta4, theta5, theta6]

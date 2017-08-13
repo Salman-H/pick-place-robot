@@ -80,6 +80,29 @@ def get_TF(alpha, a, d, q):
     return Ti_j
 
 
+def get_ee_pose(pose_msg):
+    """
+    Extract EE pose from received trajectory pose in an IK request message.
+
+    NOTE: Pose is position (cartesian coords) and orientation (euler angles)
+
+    Docs: https://github.com/ros/geometry/blob/indigo-devel/
+          tf/src/tf/transformations.py#L1089
+    """
+    ee_x = pose_msg.position.x
+    ee_y = pose_msg.position.y
+    ee_z = pose_msg.position.z
+
+    (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(
+        [pose_msg.orientation.x, pose_msg.orientation.y,
+         pose_msg.orientation.z, pose_msg.orientation.w]
+        )
+    position = (ee_x, ee_y, ee_z)
+    orientation = (roll, pitch, yaw)
+
+    return position, orientation
+
+
 def handle_calculate_IK(req):
     """Handle request from a CalculateIK type service."""
     rospy.loginfo("Received %s eef-poses from the plan" % len(req.poses))
@@ -114,16 +137,8 @@ def handle_calculate_IK(req):
 
             # INVERSE KINEMATICS
 
-            # Extract gripper pose (position and orientation) from IK request
-            # Docs: https://github.com/ros/geometry/blob/indigo-devel/
-            # tf/src/tf/transformations.py#L1089
-            gx = req.poses[x].position.x
-            gy = req.poses[x].position.y
-            gz = req.poses[x].position.z
-            (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(
-                [req.poses[x].orientation.x, req.poses[x].orientation.y,
-                 req.poses[x].orientation.z, req.poses[x].orientation.w]
-                )
+            ee_pose = get_ee_pose(req.poses[x])
+
             # Compute gripper pose w.r.t base frame using extrinsic rotations
             Rg = get_Rz(yaw) * get_Ry(pitch) * get_Rx(roll)
 

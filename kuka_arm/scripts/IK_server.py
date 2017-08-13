@@ -103,6 +103,27 @@ def get_ee_pose(pose_msg):
     return position, orientation
 
 
+def get_R_EE(ee_pose):
+    """
+    Compute EE Rotation matrix w.r.t base frame.
+
+    Computed from EE orientation (roll, pitch, yaw) and describes the
+    orientation of each axis of EE w.r.t the base frame.
+
+    """
+    roll, pitch, yaw = ee_pose[1]
+    # Perform extrinsic (fixed-axis) sequence of rotations of EE about
+    # x, y, and z axes by roll, pitch, and yaw radians respectively
+    R_ee = get_Rz(yaw) * get_Ry(pitch) * get_Rx(roll)
+    # Align EE frames in URDF vs DH params through a sequence of
+    # intrinsic (body-fixed) rotations: 180 deg yaw and -90 deg pitch
+    Rerror = get_Rz(pi) * get_Ry(-pi/2)
+    # Account for this frame alignment error in EE pose
+    R_ee = R_ee * Rerror
+
+    return R_ee
+
+
 def handle_calculate_IK(req):
     """Handle request from a CalculateIK type service."""
     rospy.loginfo("Received %s eef-poses from the plan" % len(req.poses))
@@ -138,15 +159,7 @@ def handle_calculate_IK(req):
             # INVERSE KINEMATICS
 
             ee_pose = get_ee_pose(req.poses[x])
-
-            # Compute gripper pose w.r.t base frame using extrinsic rotations
-            Rg = get_Rz(yaw) * get_Ry(pitch) * get_Rx(roll)
-
-            # Align gripper frames in URDF vs DH params through a sequence of
-            # intrinsic rotations: 180 deg yaw and -90 deg pitch and account
-            # for this frame alignment error in gripper pose
-            Rerror = get_Rz(radians(180)) * get_Ry(radians(-90))
-            Rg = Rg * Rerror
+            R_ee = get_R_EE(ee_pose)
 
             # Compute Wrist Center position w.r.t to base frame
             # The displacement from WC to gripper is a translation along zG of

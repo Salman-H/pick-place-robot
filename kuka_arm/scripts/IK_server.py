@@ -91,18 +91,17 @@ def handle_calculate_IK(req):
 
         # Compute individual transforms between adjacent links
         # T(i-1)_i = Rx(alpha(i-1)) * Dx(alpha(i-1)) * Rz(theta(i)) * Dz(d(i))
-        T0_1 = get_TF(alpha0, a0, d1, q1)
-        T1_2 = get_TF(alpha1, a1, d2, q2)
-        T2_3 = get_TF(alpha2, a2, d3, q3)
-        T3_4 = get_TF(alpha3, a3, d4, q4)
-        T4_5 = get_TF(alpha4, a4, d5, q5)
-        T5_6 = get_TF(alpha5, a5, d6, q6)
-        T6_G = get_TF(alpha6, a6, dG, qG)
+        T0_1 = get_TF(alpha0, a0, d1, q1).subs(DH)
+        T1_2 = get_TF(alpha1, a1, d2, q2).subs(DH)
+        T2_3 = get_TF(alpha2, a2, d3, q3).subs(DH)
+        T3_4 = get_TF(alpha3, a3, d4, q4).subs(DH)
+        T4_5 = get_TF(alpha4, a4, d5, q5).subs(DH)
+        T5_6 = get_TF(alpha5, a5, d6, q6).subs(DH)
+        T6_G = get_TF(alpha6, a6, dG, qG).subs(DH)
 
         # Create overall transform between base frame and gripper(G) by
         # composing the individual link transforms
         T0_G = T0_1 * T1_2 * T2_3 * T3_4 * T4_5 * T5_6 * T6_G
-        T0_G = T0_G.subs(DH)
 
         # Initialize service response consisting of a list of
         # joint trajectory positions (joint angles) corresponding

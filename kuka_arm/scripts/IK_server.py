@@ -108,7 +108,7 @@ def get_R_EE(ee_pose):
     Compute EE Rotation matrix w.r.t base frame.
 
     Computed from EE orientation (roll, pitch, yaw) and describes the
-    orientation of each axis of EE w.r.t the base frame.
+    orientation of each axis of EE w.r.t the base frame
 
     """
     roll, pitch, yaw = ee_pose[1]
@@ -122,6 +122,32 @@ def get_R_EE(ee_pose):
     R_ee = R_ee * Rerror
 
     return R_ee
+
+
+def get_WC(R_ee, ee_pose):
+    """
+    Compute Wrist Center position (cartesian coords) w.r.t base frame.
+
+    Keyword arguments:
+    R_ee -- EE Rotation matrix w.r.t base frame
+    ee_pose -- tuple of cartesian coords and euler angles describing EE
+
+    Return values:
+    Wc -- vector of cartesian coords of WC
+
+    """
+    ee_x, ee_y, ee_z = ee_pose[0]
+    # Define EE position as a vector
+    EE_P = Matrix([[ee_x],
+                   [ee_y],
+                   [ee_z]])
+    # Get Col3 vector from R_ee that describes z-axis orientation of EE
+    Z_ee = R_ee[:, 2]
+    # WC is a displacement from EE equal to a translation along
+    # the EE z-axis of magnitude dG w.r.t base frame (Refer to DH Table)
+    Wc = EE_P - DH[dG]*Z_ee
+
+    return Wc
 
 
 def handle_calculate_IK(req):
@@ -159,15 +185,10 @@ def handle_calculate_IK(req):
             # INVERSE KINEMATICS
 
             ee_pose = get_ee_pose(req.poses[x])
+
             R_ee = get_R_EE(ee_pose)
 
-            # Compute Wrist Center position w.r.t to base frame
-            # The displacement from WC to gripper is a translation along zG of
-            # magnitude dG w.r.t base frame (Refer to DH Table)
-            Zg = Rg[:, 2]  # z-axis orientation (col 3) from gripper pose
-            wcx = gx
-            wcy = gy
-            wcz = gz - DH[dG]*Zg
+            Wc = get_WC(R_ee, ee_pose)
 
             # Use a geometric IK method to calculate angles theta 1,2,3 of
             # joints 1,2,3 that control WC position:

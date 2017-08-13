@@ -162,18 +162,26 @@ def get_joints1_2_3(Wc):
     # theta1 is calculated by viewing joint 1 and arm from top-down
     theta1 = atan2(wcy, wcx)
 
-    # theta2,3 are calculated using cosine law on a triangle with edges
-    # at joints 1,2 and WC viewed from side
-    wcz_2 = wcz - DH[d1]                    # WC z-component from j2
-    wcx_2 = sqrt(wcx**2 + wcy**2) - DH[a1]  # WC x-component from j2
-    sideA = DH[a2]                          # joints 2-3 link length
-    sideB = DH[d4]                          # joints 3-WC link length
-    sideC = sqrt(wcx_2**2 + wcz_2**2)       # joints 2-WC link length
-    angleB = acos((sideC**2 + sideA**2 - sideB**2) / (2*sideC*sideA))
-    angleC = acos((sideA**2 + sideB**2 - sideC**2) / (2*sideA*sideB))
+    # theta2,3 are calculated using Cosine Law on a triangle with edges
+    # at joints 1,2 and WC viewed from side and
+    # forming angles A, B and C repectively
+    wcz_j2 = wcz - DH[d1]                              # WC z-component from j2
+    wcx_j2 = sqrt(wcx**2 + wcy**2) - DH[a1]            # WC x-component from j2
 
-    theta2 = radians(90) - angleB - atan2(wcz_2, wcx_2)
-    theta3 = radians(90) - angleC
+    side_a = round(sqrt((DH[d4])**2 + (DH[a3])**2), 7) # line segment: j3-WC
+    side_b = sqrt(wcx_j2**2 + wcz_j2**2)               # line segment: j2-WC
+    side_c = DH[a2]                                    # link length:  j2-j3
+
+    angleA = acos((side_b**2 + side_c**2 - side_a**2) / (2*side_b*side_c))
+    angleB = acos((side_a**2 + side_c**2 - side_b**2) / (2*side_a*side_c))
+    angleC = acos((side_a**2 + side_b**2 - side_c**2) / (2*side_a*side_b))
+
+    # The sag between joint-3 and WC is due to a3 and its angle is formed
+    # between y3-axis and side_a
+    angle_sag = round(atan2(abs(DH[a3]),DH[d4]), 7)
+
+    theta2 = pi/2 - angleA - atan2(wcz_j2, wcx_j2)
+    theta3 = pi/2 - (angleB + angle_sag)
 
     return theta1, theta2, theta3
 

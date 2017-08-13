@@ -186,6 +186,42 @@ def get_joints1_2_3(Wc):
     return theta1, theta2, theta3
 
 
+def get_joints4_5_6(R_ee, T0_1, T1_2, T2_3, theta1, theta2, theta3):
+    """
+    Calculate joint Euler angles 4,5,6 using analytical IK method.
+
+    NOTE: Joints 4,5,6 constitute the wrist and control WC orientation
+
+    """
+    # Extract rotation components of joints 1,2,3 from their
+    # respective individual link Transforms
+    R0_1 = T0_1[0:3, 0:3]
+    R1_2 = T1_2[0:3, 0:3]
+    R2_3 = T2_3[0:3, 0:3]
+    # Evaluate the composite rotation matrix fromed by composing
+    # these individual rotation matrices
+    R0_3 = R0_1 * R1_2 * R2_3
+    R0_3 = R0_3.evalf(subs={q1: theta1, q2: theta2, q3: theta3})
+
+    # R3_6 is the composite rotation matrix formed from an extrinsic
+    # x-y-z (roll-pitch-yaw) rotation sequence that orients WC
+    R3_6 = R0_3.inv("LU") * R_ee  # b/c: R0_6 = R_ee = R0_3*R3_6
+
+    r21 = R3_6[1, 0]              # sin(theta5)*cos(theta6)
+    r22 = R3_6[1, 1]              # -sin(theta6)*sin(theta6)
+    r13 = R3_6[0, 2]              # -sin(theta5)*cos(theta4)
+    r23 = R3_6[1, 2]              # cos(theta5)
+    r33 = R3_6[2, 2]              # sin(theta4)*sin(theta5)
+
+    # Compute Euler angles theta 4,5,6 from R3_6 by individually
+    # isolating and explicitly solving each angle
+    theta4 = atan2(r33, -r13)
+    theta5 = atan2(sqrt(r13**2 + r33**2), r23)
+    theta6 = atan2(-r22, r21)
+
+    return theta4, theta5, theta6
+
+
 def handle_calculate_IK(req):
     """Handle request from a CalculateIK type service."""
     rospy.loginfo("Received %s eef-poses from the plan" % len(req.poses))
@@ -219,14 +255,14 @@ def handle_calculate_IK(req):
             joint_trajectory_point = JointTrajectoryPoint()
 
             # INVERSE KINEMATICS
-
             ee_pose = get_ee_pose(req.poses[x])
 
             R_ee = get_R_EE(ee_pose)
-
             Wc = get_WC(R_ee, ee_pose)
 
             theta1, theta2, theta3 = get_joints1_2_3(Wc)
+            theta4, theta5, theta6 = get_joints4_5_6(R_ee, T0_1, T1_2, T2_3,
+                                                     theta1, theta2, theta3)
 
             # Populate response for the IK request
             joint_trajectory_point.positions = [theta1, theta2, theta3,

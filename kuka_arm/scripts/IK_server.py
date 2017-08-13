@@ -28,6 +28,23 @@ from mpmath import *
 from sympy import *
 
 
+# Define DH parameter sympy symbols (immutable)
+a0, a1, a2, a3, a4, a5, a6 = symbols('a0:7')     # link z-axes offsets
+d1, d2, d3, d4, d5, d6, dG = symbols('d1:7 dG')  # link x-axes offsets
+q1, q2, q3, q4, q5, q6, qG = symbols('q1:7 qG')  # joint x-axes angles
+alpha0, alpha1, alpha2, alpha3,\
+    alpha4, alpha5, alpha6 = symbols('alpha0:7') # joint z-axes angles
+
+# Construct DH Table with measurements from 'kr210.urdf.xacro' file
+DH = {alpha0:     0,  a0:      0,  d1:  0.75,  q1:      q1,
+      alpha1: -pi/2,  a1:   0.35,  d2:     0,  q2: q2-pi/2,
+      alpha2:     0,  a2:   1.25,  d3:     0,  q3:      q3,
+      alpha3: -pi/2,  a3: -0.054,  d4:  1.50,  q4:      q4,
+      alpha4:  pi/2,  a4:      0,  d5:     0,  q5:      q5,
+      alpha5: -pi/2,  a5:      0,  d6:     0,  q6:      q6,
+      alpha6:     0,  a6:      0,  dG: 0.303,  qG:       0}
+
+
 def get_Rx(q):
     """Define matrix for rotation (roll) about x axis."""
     Rx = Matrix([[1,      0,       0],
@@ -71,22 +88,6 @@ def handle_calculate_IK(req):
         return -1
     else:
         # FORWARD KINEMATICS
-
-        # Define DH parameter symbols
-        alpha0, alpha1, alpha2, alpha3, alpha4,\
-                alpha5, alpha6 = symbols('alpha0:7')  # joint z-axes angles
-        a0, a1, a2, a3, a4, a5, a6 = symbols('a0:7')  # link z-axes offsets
-        d1, d2, d3, d4, d5, d6, d7 = symbols('d1:8')  # link x-axes offsets
-        q1, q2, q3, q4, q5, q6, q7 = symbols('q1:8')  # joint x-axes angles
-
-        # Construct DH Table with measurements from 'kr210.urdf.xacro' file
-        DH = {alpha0:     0,  a0:      0,  d1:  0.75,  q1:      q1,
-              alpha1: -pi/2,  a1:   0.35,  d2:     0,  q2: q2-pi/2,
-              alpha2:     0,  a2:   1.25,  d3:     0,  q3:      q3,
-              alpha3: -pi/2,  a3: -0.054,  d4:  1.50,  q4:      q4,
-              alpha4:  pi/2,  a4:      0,  d5:     0,  q5:      q5,
-              alpha5: -pi/2,  a5:      0,  d6:     0,  q6:      q6,
-              alpha6:     0,  a6:      0,  dG: 0.303,  qG:       0}
 
         # Compute individual transforms between adjacent links
         # T(i-1)_i = Rx(alpha(i-1)) * Dx(alpha(i-1)) * Rz(theta(i)) * Dz(d(i))

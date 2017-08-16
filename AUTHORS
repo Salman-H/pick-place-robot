@@ -1,0 +1,40 @@
+# Primary Authors
+# As of Aug 16th, 2017
+
+# IK_server.py
+*       @salman-h
+
+# target_spawn.py
+*       @hvpandya
+
+# IK_debug_sympy.py
+*       @salman-h
+*       @sahiljuneja
+
+# IK_debug_numpy.py
+*       @salman-h
+
+# trajectory_sampler.h
+*       @hvpandya
+
+# trajectory_sampler.cpp
+*       @hvpandya
+
+
+# Code Owners for Robotics Nanodegree Content
+# As of July, 7th 2017
+
+# Default Owner
+*       @ryan-keenan
+
+# 1. Content Developer
+*       @ryan-keenan
+
+# 2. Services Lead
+*       mike.salem@udacity.com
+
+# 3. Program Lead
+*       @cdlei
+
+# 4. Mike Wales
+*       @walesmd

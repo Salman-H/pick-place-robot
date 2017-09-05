@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-<img src="figures/1-intro/gazebo_intro_v2.png" alt="" width="46.5%"><img src="figures/1-intro/moveit_intro_v3.png" alt="" width="43%">
+<img src="figures/1-intro/gazebo_intro_v2.png" alt="" width="51%"><img src="figures/1-intro/moveit_intro_v3.png" alt="" width="47.1%">
 </p>
 
 <p align="center">

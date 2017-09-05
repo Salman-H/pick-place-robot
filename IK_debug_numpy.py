@@ -17,6 +17,9 @@ from numpy import array, matrix, cos, sin, pi, arccos, arctan2, sqrt
 from numpy.linalg import inv
 import tf
 
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import pyplot as plt
+
 
 # Test case format:
 # -----------------
@@ -43,6 +46,12 @@ test_cases = {
     4: [],
     5: []
 }
+
+# To store coordinates for plotting
+received_ee_points = []
+your_ee_points = []
+ee_errors = []
+
 
 def test_code(test_case):
     """
@@ -171,6 +180,10 @@ def test_code(test_case):
              pose_msg.orientation.z, pose_msg.orientation.w]
             )
         position = (ee_x, ee_y, ee_z)
+
+        print('******************************************************')
+        print('EE position: {}'.format(position))
+
         orientation = (roll, pitch, yaw)
         return position, orientation
 
@@ -285,12 +298,14 @@ def test_code(test_case):
     def handle_IK():
         """Simulates handle_calculate_IK()."""
         dh = get_DH_Table()
+
         # INVERSE KINEMATICS
         ee_pose = get_ee_pose(req.poses[x])
         R_ee = get_R_EE(ee_pose)
         Wc = get_WC(dh, R_ee, ee_pose)
         theta1, theta2, theta3 = get_joints1_2_3(dh, Wc)
         theta4, theta5, theta6 = get_joints4_5_6(dh, R_ee, theta1, theta2, theta3)
+
         return Wc, theta1, theta2, theta3, theta4, theta5, theta6
 
     # FORWARD KINEMATICS ======================================================
@@ -363,7 +378,61 @@ def test_code(test_case):
         print("End effector error for z position is: %04.8f" % ee_z_e)
         print("Overall end effector offset is: %04.8f units \n" % ee_offset)
 
+    # Add EE points for plotting
+    print('')
+    received_ee_points.append(test_case[0][0])
+
+    your_ee_points.append(
+        [round(your_ee[0].item(0), 8),
+         round(your_ee[1].item(0), 8),
+         round(your_ee[2].item(0), 8)]
+        )
+
+    ee_errors.append(
+        [round(ee_x_e.item(0), 8),
+         round(ee_y_e.item(0), 8),
+         round(ee_z_e.item(0), 8)]
+        )
+
+
 if __name__ == "__main__":
     # Change test case number for different scenarios
-    test_case_number = 1
-    test_code(test_cases[test_case_number])
+    for i in range(1, 4):
+        test_case_number = i
+        test_code(test_cases[test_case_number])
+
+    #print(received_ee_points)
+    #print(your_ee_points)
+    #print(ee_errors)
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    data1 = array(received_ee_points)
+    x1, y1, z1 = data1.T
+    ax.scatter(x1, y1, z1, c='blue', s=50, marker='o')
+    ax.plot(x1, y1, z1, c='blue', label='rec_ee')
+
+    data2 = array(your_ee_points)
+    x2, y2, z2 = data2.T
+    ax.scatter(x2, y2, z2, c='orange', s=50, marker='s')
+    ax.plot(x2, y2, z2, c='orange', label='fk_ee')
+
+    data3 = array(ee_errors)
+    x3, y3, z3 = data3.T
+    ax.scatter(x3, y3, z3, c='magenta', s=50, marker='^')
+    ax.plot(x3, y3, z3, c='magenta', label='ee_error')
+
+    ax.set_xlabel('X Axis')
+    ax.set_ylabel('Y Axis')
+    ax.set_zlabel('Z Axis')
+
+    ax.xaxis.label.set_color('red')
+    ax.yaxis.label.set_color('green')
+    ax.zaxis.label.set_color('blue')
+
+    ax.grid(True, which='both')
+    ax.view_init(30,220)
+
+    plt.legend()
+    plt.show()

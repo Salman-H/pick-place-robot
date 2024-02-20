@@ -490,7 +490,7 @@ $$
 $$
 
 $$
-\vec a_{\frac{x}{y}} \cdot \boldsymbol{\vec{b_{\frac{x}{y}}}}
+\boldsymbol{\vec a}_{\frac{x}{y}} \cdot \boldsymbol{\vec{b_{\frac{x}{y}}}}
 $$
 
 $$

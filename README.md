@@ -487,7 +487,7 @@ In figure 3.7, point P is expressed relative to frame B and the objective is to 
 
 $$
 \begin{equation}
-^A\boldsymbol{\vec{r}}_{\frac{P}{A_0}} =\ ^A_BT \cdot\ ^A\boldsymbol{\vec{r}}_A
+^A\boldsymbol{\vec{r}}_{\frac{P}{A_0}} =\ ^A_BT \cdot\ ^A\boldsymbol{\vec{r}}_{\frac{A}{B}}
 \end{equation}
 $$
 

@@ -411,7 +411,7 @@ Euler angles are characterized by the following properties:
 
 $$
 \begin{align}
-^A_B{R}_{ZXY}(\psi,\theta,\phi) &= R_{Z}(\psi)R_{Y}(\theta)R_{X}(\phi) \\
+^A_BR_{ZXY}(\psi,\theta,\phi) &= R_{Z}(\psi)R_{Y}(\theta)R_{X}(\phi) \\
 &= \begin{pmatrix}
     c\psi & -s\psi & 0 \\
     s\psi & c\psi & 0 \\
@@ -440,7 +440,7 @@ In an intrinsic sequence of rotations, such as, a Z-Y-X convention of a yaw, fol
 
 $$
 \begin{align}
-^A_B{R}_{ZXY}(\psi,\theta,\phi) &= R_{X}(\phi)R_{Y}(\theta)R_{Z}(\psi) \\
+^A_BR_{ZXY}(\psi,\theta,\phi) &= R_{X}(\phi)R_{Y}(\theta)R_{Z}(\psi) \\
 &= \begin{pmatrix}
     1 & 0 & 0 \\
     0 & c\phi & -s\phi \\

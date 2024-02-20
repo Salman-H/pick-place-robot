@@ -494,27 +494,7 @@ $$
 $$
 
 $$
-\vec \boldsymbol a_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
-$$
-
-$$
-\vec \boldsymbol{a}_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
-$$
-
-$$
-\boldsymbol{\vec a}_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
-$$
-
-$$
-\boldsymbol{\vec} a_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
-$$
-
-$$
-\vec{\boldsymbol{a}}_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
-$$
-
-$$
-\vec{r}_{\frac{P}{A}} +\ \vec{r}_{\frac{P}{A}}
+^A \vec r_{\frac{P}{A_0}} =\ ^A_BT\ \cdot\ ^B \vec r_{\frac{P}{B_0}}
 $$
 
 Testing TeX math blocks.

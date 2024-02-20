@@ -490,7 +490,7 @@ $$
 $$
 
 $$
-\boldsymbol{\hat{a_{x}}} \cdot \boldsymbol{\hat{b_{x}}}
+\boldsymbol{\vec{a_{x}}} \cdot \boldsymbol{\vec{b_{x}}}
 $$
 
 $$

@@ -490,7 +490,7 @@ $$
 $$
 
 $$
-A_\frac{P}{A_0} +\ A_\frac{P}{A_0}
+\vec{r}_\frac{P}{A_0} +\ \vec{r}_\frac{P}{A_0}
 $$
 
 Testing TeX math blocks.

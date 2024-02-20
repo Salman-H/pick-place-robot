@@ -489,6 +489,8 @@ $$
 \vec{r}_{\frac{P}{A_{0}}} +\ A_{\frac{P}{A_{0}}}
 $$
 
+Testing TeX math blocks.
+
 $$
 \begin{equation}
 ^A\boldsymbol{\vec{r}}_{\frac{P}{A_0}} =\ ^A_BR\ \cdot\ ^B\boldsymbol{\vec{r}}_{\frac{P}{B_0}}\ +\ ^A\boldsymbol{\vec{r}}_{\frac{B_0}{A_0}}

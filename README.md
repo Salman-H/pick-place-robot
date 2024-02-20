@@ -485,7 +485,7 @@ In the case where a reference frame is both simultaneously rotated *and* transla
 
 In figure 3.7, point P is expressed relative to frame B and the objective is to express it relative to frame A. To do so would require projecting or superimposing frame B onto frame A i.e. first rotating frame B to orient it with frame A and then translating it such that the centers B<sub>0</sub> and A<sub>0</sub> of both frames are aligned.
 
-$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+$$( \sum_{k=1}^n a_k b_k )^2 \leq ( \sum_{k=1}^n a_k^2 ) ( \sum_{k=1}^n b_k^2 )$$
 
 $$
 \begin{equation}

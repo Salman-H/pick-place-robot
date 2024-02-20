@@ -346,12 +346,10 @@ $$
 where unit vectors of *frame A*, $\boldsymbol{\hat{a_x}}$ and $\boldsymbol{\hat{a_y}}$ are expressed in terms of unit vectors of *frame B*, $\boldsymbol{\hat{b_x}}$ and $\boldsymbol{\hat{b_y}}$ as follows:
 
 $$
-\begin{equation}
-  \begin{align*}
-    \boldsymbol{\hat{a_{x}}} &= \boldsymbol{\hat{b_{x}}}\cos\theta = -\boldsymbol{\hat{b_{y}}}\sin\theta \\
-    \boldsymbol{\hat{a_{y}}} &= \boldsymbol{\hat{b_{x}}}\sin\theta = \boldsymbol{\hat{b_{y}}}\cos\theta
-  \end{align*}
-\end{equation}
+\begin{align*}
+  \boldsymbol{\hat{a_{x}}} &= \boldsymbol{\hat{b_{x}}}\cos\theta = -\boldsymbol{\hat{b_{y}}}\sin\theta \\
+  \boldsymbol{\hat{a_{y}}} &= \boldsymbol{\hat{b_{x}}}\sin\theta = \boldsymbol{\hat{b_{y}}}\cos\theta
+\end{align*}
 $$
 
 <!--<p align="center">
@@ -412,7 +410,7 @@ Euler angles are characterized by the following properties:
 **Intrinsic** or body-fixed rotations are performed about the coordinate system *as* rotated by the previous rotation. The rotation sequence changes the axis orientation after each elemental rotation while the body remains fixed.
 
 $$
-\begin{align*}
+\begin{align}
 ^A_B{R}_{ZXY}(\psi,\theta,\phi) &= R_{Z}(\psi)R_{Y}(\theta)R_{X}(\phi) \\
 &= \begin{pmatrix}
     c\psi & -s\psi & 0 \\
@@ -429,7 +427,7 @@ $$
     0 & c\phi & -s\phi \\
     0 & s\phi & c\phi
   \end{pmatrix}
-\end{align*}
+\end{align}
 $$
 
 <!--<p align="center">
@@ -441,7 +439,7 @@ In an intrinsic sequence of rotations, such as, a Z-Y-X convention of a yaw, fol
 **Extrinsic** or fixed-axis rotations are performed about the *fixed* world reference frame. The original coordinate frame remains motionless while the body changes orientation.
 
 $$
-\begin{align*}
+\begin{align}
 ^A_B{R}_{ZXY}(\psi,\theta,\phi) &= R_{X}(\phi)R_{Y}(\theta)R_{Z}(\psi) \\
 &= \begin{pmatrix}
     1 & 0 & 0 \\
@@ -458,7 +456,7 @@ $$
     s\psi & c\psi & 0 \\
     0 & 0 & 1
   \end{pmatrix}
-\end{align*}
+\end{align}
 $$
 
 <!--<p align="center">
@@ -489,28 +487,28 @@ In figure 3.7, point P is expressed relative to frame B and the objective is to 
 
 $$
 \begin{equation}
-^A\boldsymbol{\vec r}_{\frac{P}{A_0}} =\ ^A_BT\ \cdot\ ^B\boldsymbol{\vec r}_{\frac{P}{B_0}}
+^A\boldsymbol{\vec{r}}_{\frac{P}{A_0}} =\ ^A_BT\ \cdot\ ^B\boldsymbol{\vec{r}}_{\frac{P}{B_0}}
 \end{equation}
 $$
 
 $$
 \begin{equation}
-^A\boldsymbol{\vec r}_{\frac{P}{A_0}} =\ ^A_BR\ \cdot\ ^B\boldsymbol{\vec r}_{\frac{P}{B_0}}\ +\ ^A\boldsymbol{\vec r}_{\frac{B_0}{A_0}}
+^A\boldsymbol{\vec{r}}_{\frac{P}{A_0}} =\ ^A_BR\ \cdot\ ^B\boldsymbol{\vec{r}}_{\frac{P}{B_0}}\ +\ ^A\boldsymbol{\vec{r}}_{\frac{B_0}{A_0}}
 \end{equation}
 $$
 
 $$
 \begin{equation}
   \left[\begin{array}{c}
-    ^A\boldsymbol{\vec r}_{\frac{P}{A_0}} \\ \hdashline
+    ^A\boldsymbol{\vec{r}}_{\frac{P}{A_0}} \\ \hdashline
     1 \\
   \end{array}\right] = 
   \left[\begin{array}{ccc:c}
-    & ^A_BR  & &  ^A\boldsymbol{\vec r}_{\frac{B_0}{A_0}} \\ \hdashline
+    & ^A_BR  & &  ^A\boldsymbol{\vec{r}}_{\frac{B_0}{A_0}} \\ \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
-     ^B\boldsymbol{\vec r}_{\frac{P}{B_0}} \\ \hdashline
+     ^B\boldsymbol{\vec{r}}_{\frac{P}{B_0}} \\ \hdashline
     1 \\
   \end{array}\right]
 \end{equation}
@@ -566,7 +564,7 @@ As shown in figure 3.9, the position of the end-effector is known relative to *i
 Point P relative to frame *W* can be found by successively applying equation (4) between adjacent joints. More specifically, 
 
 $$
-^W\boldsymbol{\vec r}_{\frac{P}{W_0}} =\ ^W_CT\ \cdot\ ^C\boldsymbol{\vec r}_{\frac{P}{C_0}}
+^W\boldsymbol{\vec{r}}_{\frac{P}{W_0}} =\ ^W_CT\ \cdot\ ^C\boldsymbol{\vec{r}}_{\frac{P}{C_0}}
 $$
 
 where $\ ^W_CT =\ ^B_CT \cdot\ ^A_BT \cdot\ ^W_AT$
@@ -574,14 +572,14 @@ where $\ ^W_CT =\ ^B_CT \cdot\ ^A_BT \cdot\ ^W_AT$
 Using the point $P_{C} (0.5, 0, 17)$ vector relative to frame C, we first compute the point P vector relative to frame B:
 
 $$
-\begin{align*}
-    ^B\boldsymbol{\vec r}_{\frac{P}{B_0}}  &= 
+\begin{align}
+    ^B\boldsymbol{\vec{r}}_{\frac{P}{B_0}}  &= 
   \left[\begin{array}{ccc:c}
-    & ^B_CR  & &  ^B\boldsymbol{\vec r}_{\frac{C_0}{B_0}} \\ \hdashline
+    & ^B_CR  & &  ^B\boldsymbol{\vec{r}}_{\frac{C_0}{B_0}} \\ \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
-     ^C\boldsymbol{\vec r}_{\frac{P}{C_0}} \\ \hdashline
+     ^C\boldsymbol{\vec{r}}_{\frac{P}{C_0}} \\ \hdashline
     1 \\
   \end{array}\right] \\ &= 
   \left[\begin{array}{ccc:c}
@@ -608,21 +606,21 @@ $$
     42 \\ \hdashline
     1 \\
   \end{array}\right]
-  \end{align*}
+  \end{align}
 $$
 
 We then use this point $P_{B} (15, 0, 42)$ vector relative to to frame B to similarly compute the point P vector relative to frame A:
 
 $$
-\begin{align*}
-    ^A\boldsymbol{\vec r}_{\frac{P}{A_0}}
+\begin{align}
+    ^A\boldsymbol{\vec{r}}_{\frac{P}{A_0}}
     &= 
   \left[\begin{array}{ccc:c}
-    & ^A_BR  & &  ^A\boldsymbol{\vec r}_{\frac{B_0}{A_0}} \\ \hdashline
+    & ^A_BR  & &  ^A\boldsymbol{\vec{r}}_{\frac{B_0}{A_0}} \\ \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
-     ^B\boldsymbol{\vec r}_{\frac{P}{B_0}} \\ \hdashline
+     ^B\boldsymbol{\vec{r}}_{\frac{P}{B_0}} \\ \hdashline
     1 \\
   \end{array}\right] \\ &= 
   \left[\begin{array}{ccc:c}
@@ -649,21 +647,21 @@ $$
     1.5 \\ \hdashline
     1 \\
   \end{array}\right]
-  \end{align*}
+  \end{align}
 $$
 
 And finally, using this point $P_{A} (15, 0, 42)$ vector *relative to* frame A, we can compute the point P vector *relative to* the *world reference* frame W:
 
 $$
-\begin{align*}
-    ^W\boldsymbol{\vec r}_{\frac{P}{W_0}}
+\begin{align}
+    ^W\boldsymbol{\vec{r}}_{\frac{P}{W_0}}
     &= 
   \left[\begin{array}{ccc:c}
-    & ^W_AR  & &  ^W\boldsymbol{\vec r}_{\frac{A_0}{W_0}} \\ \hdashline
+    & ^W_AR  & &  ^W\boldsymbol{\vec{r}}_{\frac{A_0}{W_0}} \\ \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
-     ^W\boldsymbol{\vec r}_{\frac{P}{W_0}} \\ \hdashline
+     ^W\boldsymbol{\vec{r}}_{\frac{P}{W_0}} \\ \hdashline
     1 \\
   \end{array}\right] \\
    &= 
@@ -692,7 +690,7 @@ $$
     28 \\ \hdashline
     1 \\
   \end{array}\right]
-  \end{align*}
+  \end{align}
 $$
 
 So, point $P_W$, reprenting the end-effector position *relative to* the base of the robot, is $(42, 0, 28)$.
@@ -747,7 +745,7 @@ where the base frame is denoted by *0* and the end-effector's frame denoted by *
 
 $$
 \begin{equation}
-  ^{i-1}_iT =\ R_X(\alpha_{i - 1})\ D_X(a_{i - 1}) R_Z(\theta_i)D_Z(d_i)
+  ^{i-1}_iT =\ R_X(\alpha_{i-1})\ D_X(a_{i-1}) R_Z(\theta_i)D_Z(d_i)
 \end{equation}
 $$
 <!--<p align="center">
@@ -1058,31 +1056,31 @@ The position vector of WC relative to EE (**r**<sub>WC/EE<sub>O</sub></sub>) is 
 <img src="figures/5-implementation/wc_calc_v2.png" alt="" width="62%">
 </p>-->
 $$
-^O\boldsymbol{\vec r}_{\frac{WC}{O_0}} =\ ^0_{EE}T\ \cdot\ ^{EE}\boldsymbol{\vec r}_{\frac{WC}{EE_0}}
+^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} =\ ^0_{EE}T\ \cdot\ ^{EE}\boldsymbol{\vec{r}}_{\frac{WC}{EE_0}}
 $$
 
 $$
-^O\boldsymbol{\vec r}_{\frac{WC}{O_0}} =\ ^O\boldsymbol{\vec r}_{\frac{EE}{O_0}} -\ ^0_{EE}R\ \cdot\ ^{EE}\boldsymbol{\vec r}_{\frac{WC}{EE_0}}
+^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} =\ ^O\boldsymbol{\vec{r}}_{\frac{EE}{O_0}} -\ ^0_{EE}R\ \cdot\ ^{EE}\boldsymbol{\vec{r}}_{\frac{WC}{EE_0}}
 $$
 
 $$
   \left[\begin{array}{c}
-    ^O\boldsymbol{\vec r}_{\frac{WC}{O_0}} \\ \hdashline
+    ^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} \\ \hdashline
     1 \\
   \end{array}\right]\ =\ 
   \left[\begin{array}{ccc:c}
-    & ^0_{EE}R  & &  ^O\boldsymbol{\vec r}_{\frac{EE}{O_0}} \\ \hdashline
+    & ^0_{EE}R  & &  ^O\boldsymbol{\vec{r}}_{\frac{EE}{O_0}} \\ \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]\
   \left[\begin{array}{c}
-     ^{EE}\boldsymbol{\vec r}_{\frac{WC}{EE_0}} \\ \hdashline
+     ^{EE}\boldsymbol{\vec{r}}_{\frac{WC}{EE_0}} \\ \hdashline
     1 \\
   \end{array}\right]
 $$
 
 $$
   \left[\begin{array}{c}
-    ^O\boldsymbol{\vec r}_{\frac{WC}{O_0}} \\ \hdashline
+    ^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} \\ \hdashline
     1 \\
   \end{array}\right]\ =\ 
   \left[\begin{array}{ccc:c}
@@ -1092,13 +1090,13 @@ $$
     0 & 0 & 0 & 1 \\
   \end{array}\right]\
   \left[\begin{array}{c}
-     ^{EE}\boldsymbol{\vec r}_{\frac{WC}{EE_0}} \\ \hdashline
+     ^{EE}\boldsymbol{\vec{r}}_{\frac{WC}{EE_0}} \\ \hdashline
     1 \\
   \end{array}\right]
 $$
 
 $$
-^O\boldsymbol{\vec r}_{\frac{WC}{O_0}} =\ ^O\boldsymbol{\vec r}_{\frac{EE}{O_0}} -\ d_{EE}\cdot\ ^0_{EE}R\
+^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} =\ ^O\boldsymbol{\vec{r}}_{\frac{EE}{O_0}} -\ d_{EE}\cdot\ ^0_{EE}R\
 \left[\begin{array}{c}
     0 \\
     0 \\
@@ -1272,40 +1270,39 @@ Joint angles, $\theta_4$, $\theta_5$, and $\theta_6$ can then be analytically de
 <br>
 
 $$
-\begin{align*}
-\frac{r_{33}}{-r_{13}} &= \frac{\sin\theta_4\sin\theta_5}{\cos\theta_4\sin\theta_5} \\[10pt]
-&= \frac{\sin\theta_4}{\cos\theta_4} \\[9pt]
-&= \tan\theta_4 \\[9pt]
+\begin{align}
+\frac{r_{33}}{-r_{13}} &= \frac{\sin\theta_4\sin\theta_5}{\cos\theta_4\sin\theta_5} \\
+&= \frac{\sin\theta_4}{\cos\theta_4} \\
+&= \tan\theta_4 \\
 \therefore\ \boldsymbol{\theta_4} &= \arctan\frac{r_{33}}{-r_{13}}
-\end{align*}
+\end{align}
 $$
 
 <br>
 
 $$
-\begin{align*}
-\frac{\sqrt{r^2_{13} + r^2_{33}}}{r_{23}} &= \frac{\sqrt{(\cos\theta_4\sin\theta_5)^2 + (\sin\theta_4\sin\theta_5)^2}}{\cos\theta_5} \\[10pt]
-&= \frac{\sqrt{\cos^2\theta_4\sin^2\theta_5 + \sin^2\theta_4\sin^2\theta_5}}{\cos\theta_5} \\[10pt]
-&= \frac{\sqrt{\sin^2\theta_5\ ( \cos^2\theta_4 + \sin^2\theta_4)}}{\cos\theta_5} \\[10pt]
-&= \frac{\sqrt{\sin^2\theta_5\ ( 1)}}{\cos\theta_5} \\[10pt]
-&= \frac{\sin\theta_5}{\cos\theta_5} \\[10pt]
-&= \tan\theta_5 \\[5pt]
+\begin{align}
+\frac{\sqrt{r^2_{13} + r^2_{33}}}{r_{23}} &= \frac{\sqrt{(\cos\theta_4\sin\theta_5)^2 + (\sin\theta_4\sin\theta_5)^2}}{\cos\theta_5} \\
+&= \frac{\sqrt{\cos^2\theta_4\sin^2\theta_5 + \sin^2\theta_4\sin^2\theta_5}}{\cos\theta_5} \\
+&= \frac{\sqrt{\sin^2\theta_5\ ( \cos^2\theta_4 + \sin^2\theta_4)}}{\cos\theta_5} \\
+&= \frac{\sqrt{\sin^2\theta_5\ ( 1)}}{\cos\theta_5} \\
+&= \frac{\sin\theta_5}{\cos\theta_5} \\
+&= \tan\theta_5 \\
 \therefore\ \boldsymbol{\theta_5} &= \arctan\frac{\sqrt{r^2_{13} + r^2_{33}}}{r_{23}}
-\end{align*}
+\end{align}
 $$
 
 <br>
 
 $$
-\begin{align*}
+\begin{align}
 \frac{-r_{22}}{r_{21}} 
-&= \frac{\sin\theta_5\sin\theta_6}{\sin\theta_5\sin\theta_6} \\[10pt]
-&= \frac{\sin\theta_6}{\cos\theta_6}\\[9pt]
-&= \tan\theta_6 \\[5pt]
+&= \frac{\sin\theta_5\sin\theta_6}{\sin\theta_5\sin\theta_6} \\
+&= \frac{\sin\theta_6}{\cos\theta_6}\\
+&= \tan\theta_6 \\
 \therefore\ \boldsymbol{\theta_6} &= \arctan\frac{r_{33}}{-r_{13}}
-\end{align*}
+\end{align}
 $$
-
 
 <!--<p align="center">
 <img src="figures/5-implementation/thetas_4_5_6_v2.png" alt="" width="52%">

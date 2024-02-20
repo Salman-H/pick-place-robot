@@ -494,6 +494,26 @@ $$
 $$
 
 $$
+\vec \boldsymbol a_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
+$$
+
+$$
+\vec \boldsymbol{a}_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
+$$
+
+$$
+\boldsymbol{\vec a}_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
+$$
+
+$$
+\boldsymbol{\vec} a_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
+$$
+
+$$
+\vec{\boldsymbol{a}}_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
+$$
+
+$$
 \vec{r}_{\frac{P}{A}} +\ \vec{r}_{\frac{P}{A}}
 $$
 

@@ -760,7 +760,7 @@ Recall that to compute the position of the end-effector relative to the base or 
 
 $$
 \begin{equation}
-  ^0_NT =\ ^0_1T\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT
+  T^0_N =\ T^0_1\ T^1_2\ T^2_3 \cdots\ T^{N-1}_N
 \end{equation}
 $$
 <!--<p align="center">
@@ -770,20 +770,8 @@ $$
 where the base frame is denoted by *0* and the end-effector's frame denoted by *N*. Thus, $^0_NT$ defines the homogeneous transformation that projects frame *N* onto frame *0*. More specifically, a single transform between links $i-1$ and $i$ is made up up of two rotations *R* of magnitudes α and θ, and two displacements *D* of magnitudes ɑ and d.
 
 $$
-\begin{equation}
-  ^0_NT =\ ^0_1T\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT
-\end{equation}
+T_i^{i-1} =\ R_X (\alpha_{i-1}) D_X (a_{i-1}) R_Z (\theta_i) D_Z (d_i)
 $$
-
-$^{i-1}_iT$ = $R_X A_{i-1}$
-
-$^{i-1}_iT =$ R<sub>X</sub>&nbsp;(α<sub>i-1</sub>)&nbsp;D<sub>X</sub>&nbsp;(ɑ<sub>i-1</sub>)&nbsp;R<sub>Z</sub>&nbsp;(θ<sub>i</sub>)&nbsp;R<sub>Z</sub>&nbsp;(d<sub>i</sub>)&nbsp;
-
-$$
-{^{i-1}_iT} =\ {R_X (\alpha_{i-1}) D_X (a_{i-1}) R_Z (\theta_i) D_Z (d_i)}
-$$
-
-$^{N-1}_NT =\ R_{i - 2}\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT$
 
 <!--<p align="center">
 <img src="figures/3-theory/dh_eq_2.png" alt="" width="55%">
@@ -792,7 +780,7 @@ $^{N-1}_NT =\ R_{i - 2}\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT$
 As shown previously, this can be expanded in terms of the homegeneous transform matrix (equation 4):
 
 $$
-^i_iT =
+T_i^{i-1} =
 \left[\begin{array}{ccc:c}
   c (\theta_i) & -s (\theta_i)  & 0 & a_{i-1} \\ 
   s (\theta_i) c (\alpha_{i-1}) & c (\theta_i) c (\alpha_{i-1}) & -s (\alpha_{i-1}) & -s (a_{i-1}) d_i  \\
@@ -802,7 +790,7 @@ $$
 \end{array}\right]
 $$
 
-where $c$ and $s$ and shorthands for $cos$ and $sin$ respectively.
+where $c$ and $s$ and shorthands for $\cos$ and $\sin$ respectively.
 
 <!--<p align="center">
 <img src="figures/3-theory/dh_eq_3_v2.png" alt="" width="55%">
@@ -1044,16 +1032,14 @@ Additionally, The type of robotic manipulator used (anthropomorphic) meets the c
 The *4 x 4* homogeneous transform between adjacent links from section 3 is shown here again for clarity:
 
 $$
-\begin{equation}
-  ^{i-1}_iT =
-  \left[\begin{array}{ccc:c}
-    c (\theta_i) & -s (\theta_i)  & 0 & a_{i-1} \\ 
-    s (\theta_i) c (\alpha_{i-1}) & c (\theta_i) c (\alpha_{i-1}) & -s (\alpha_{i-1}) & -s (a_{i-1}) d_i  \\
-     s (\theta_i) s (\alpha_{i-1}) & c (\theta_i) s (\alpha_{i-1}) & c (\alpha_{i-1}) & c (\alpha_{i-1}) d_i \\ 
-    \hdashline
-    0 & 0 & 0 & 1 \\
-  \end{array}\right]
-\end{equation}
+T_i^{i-1} =
+\left[\begin{array}{ccc:c}
+  c (\theta_i) & -s (\theta_i)  & 0 & a_{i-1} \\ 
+  s (\theta_i) c (\alpha_{i-1}) & c (\theta_i) c (\alpha_{i-1}) & -s (\alpha_{i-1}) & -s (a_{i-1}) d_i  \\
+   s (\theta_i) s (\alpha_{i-1}) & c (\theta_i) s (\alpha_{i-1}) & c (\alpha_{i-1}) & c (\alpha_{i-1}) d_i \\ 
+  \hdashline
+  0 & 0 & 0 & 1 \\
+\end{array}\right]
 $$
 
 <!--<p align="center">

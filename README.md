@@ -775,15 +775,15 @@ $$
 \end{equation}
 $$
 
-$^{N-1}_NT =\ R_{i - 2}\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT$
-
-$^{N-1}_NT$ = &nbsp; $R_X$ &nbsp;(α<sub>i-1</sub>)
+$^{i-1}_iT$ = $R_X$ $(\alpha_{i-1})$
 
 $^{i-1}_iT =$ R<sub>X</sub>&nbsp;(α<sub>i-1</sub>)&nbsp;D<sub>X</sub>&nbsp;(ɑ<sub>i-1</sub>)&nbsp;R<sub>Z</sub>&nbsp;(θ<sub>i</sub>)&nbsp;R<sub>Z</sub>&nbsp;(d<sub>i</sub>)&nbsp;
 
 $$
 ^{i-1}_iT = {R_X} (\alpha_{i-1}) D_X (a_{i - 1}) R_Z (\theta_i) D_Z (d_i)
 $$
+
+$^{N-1}_NT =\ R_{i - 2}\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT$
 
 <!--<p align="center">
 <img src="figures/3-theory/dh_eq_2.png" alt="" width="55%">

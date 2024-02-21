@@ -792,16 +792,14 @@ $^{N-1}_NT =\ R_{i - 2}\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT$
 As shown previously, this can be expanded in terms of the homegeneous transform matrix (equation 4):
 
 $$
-\begin{equation}
-  ^{i-1}_iT =
-  \left[\begin{array}{ccc:c}
-    c (\theta_i) & -s (\theta_i)  & 0 & a_{i-1} \\ 
-    s (\theta_i) c (\alpha_{i-1}) & c (\theta_i) c (\alpha_{i-1}) & -s (\alpha_{i-1}) & -s (a_{i-1}) d_i  \\
-     s (\theta_i) s (\alpha_{i-1}) & c (\theta_i) s (\alpha_{i-1}) & c (\alpha_{i-1}) & c (\alpha_{i-1}) d_i \\ 
-    \hdashline
-    0 & 0 & 0 & 1 \\
-  \end{array}\right]
-\end{equation}
+^i_iT =
+\left[\begin{array}{ccc:c}
+  c (\theta_i) & -s (\theta_i)  & 0 & a_{i-1} \\ 
+  s (\theta_i) c (\alpha_{i-1}) & c (\theta_i) c (\alpha_{i-1}) & -s (\alpha_{i-1}) & -s (a_{i-1}) d_i  \\
+   s (\theta_i) s (\alpha_{i-1}) & c (\theta_i) s (\alpha_{i-1}) & c (\alpha_{i-1}) & c (\alpha_{i-1}) d_i \\ 
+  \hdashline
+  0 & 0 & 0 & 1 \\
+\end{array}\right]
 $$
 
 where $c$ and $s$ and shorthands for $cos$ and $sin$ respectively.

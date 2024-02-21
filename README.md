@@ -771,7 +771,7 @@ where the base frame is denoted by *0* and the end-effector's frame denoted by *
 
 $$
 \begin{equation}
-  ^{N-1}_NT =\ ^0_1T\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT
+  ^{N-1}_NT =\ R_X (\alpha_{i-1}) ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT
 \end{equation}
 $$
 

@@ -576,7 +576,8 @@ Using the point $P_{C} (0.5, 0, 17)$ vector relative to frame C, we first comput
 
 $$
 \begin{align}
-    ^B \vec r_{\frac{P}{B_0}} &= 
+    ^B \vec r_{\frac{P}{B_0}} 
+    &= 
   \left[\begin{array}{ccc:c}
     & ^B_CR  & &  ^B \vec r_{\frac{C_0}{B_0}} \\ 
     \hdashline
@@ -586,7 +587,8 @@ $$
     ^C \vec r_{\frac{P}{C_0}} \\ 
     \hdashline
     1 \\
-  \end{array}\right] \\ &= 
+  \end{array}\right] \\ 
+  &= 
   \left[\begin{array}{ccc:c}
     \cos(60) & 0 & \sin(60) &  0 \\ 
     0 & 1  & 1 & 0 \\
@@ -600,7 +602,8 @@ $$
     17 \\ 
     \hdashline
     1 \\
-  \end{array}\right] \\ &= 
+  \end{array}\right] \\ 
+  &= 
   \left[\begin{array}{c}
     0.5\cos(60) + 17\sin(60) + 0  \\ 
     0  \\
@@ -633,7 +636,8 @@ $$
     ^B \vec r_{\frac{P}{B_0}} \\ 
     \hdashline
     1 \\
-  \end{array}\right] \\ &= 
+  \end{array}\right] \\ 
+  &= 
   \left[\begin{array}{ccc:c}
     \cos(110) & 0 & \sin(110) &  1 \\ 
     0 & 1  & 1 & 0 \\
@@ -647,7 +651,8 @@ $$
     42 \\ 
     \hdashline
     1 \\
-  \end{array}\right] \\ &= 
+  \end{array}\right] \\ 
+  &= 
   \left[\begin{array}{c}
     15\cos(110) + 42\sin(110) + 1  \\ 
     0  \\
@@ -765,7 +770,7 @@ $$
 where the base frame is denoted by *0* and the end-effector's frame denoted by *N*. Thus, $^0_NT$ defines the homogeneous transformation that projects frame *N* onto frame *0*. More specifically, a single transform between links $i-1$ and $i$ is made up up of two rotations *R* of magnitudes α and θ, and two displacements *D* of magnitudes ɑ and d.
 
 $$
-^{i-1}_iT =\ R_X (\alpha_{i-1}) D_X (a_{i-1}) R_Z (\theta_i) D_Z (d_i)
+^{i-1}_iT =\ R_X ( \alpha_{i-1} )\ D_X ( a_{i-1} )\ R_Z ( \theta_i )\ D_Z ( d_i )
 $$
 <!--<p align="center">
 <img src="figures/3-theory/dh_eq_2.png" alt="" width="55%">

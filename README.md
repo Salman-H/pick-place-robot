@@ -510,6 +510,7 @@ $$
     \hdashline
     1 \\
   \end{array}\right]
+  \tag{3}
 \end{equation}
 $$
 

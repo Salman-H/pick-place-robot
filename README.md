@@ -513,10 +513,12 @@ $$
   \end{array}\right] = 
   \left[\begin{array}{ccc:c}
     & ^A_BR  & &  ^A \vec r_{\frac{B_0}{A_0}} \\
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
-     ^B \vec r_{\frac{P}{B_0}} \\
+    ^B \vec r_{\frac{P}{B_0}} \\
+    \hdashline
     1 \\
   \end{array}\right]
 \end{equation}

@@ -1300,12 +1300,10 @@ Joint angles, $\theta_4$, $\theta_5$, and $\theta_6$ can then be analytically de
 <br>
 
 $$
-\begin{align}
-\frac{r_{33}}{-r_{13}} &= \frac{\sin\theta_4\sin\theta_5}{\cos\theta_4\sin\theta_5} \\
-&= \frac{\sin\theta_4}{\cos\theta_4} \\
-&= \tan\theta_4 \\
+\begin{flalign}
+\frac{r_{33}}{-r_{13}} &= \frac{\sin\theta_4\sin\theta_5}{\cos\theta_4\sin\theta_5} = \frac{\sin\theta_4}{\cos\theta_4} = \tan\theta_4 \\
 \therefore\ \boldsymbol{\theta_4} &= \arctan\frac{r_{33}}{-r_{13}}
-\end{align}
+\end{flalign}
 $$
 
 <br>

@@ -780,7 +780,7 @@ $^{i-1}_iT$ = $R_X A_{i-1}$
 $^{i-1}_iT =$ R<sub>X</sub>&nbsp;(α<sub>i-1</sub>)&nbsp;D<sub>X</sub>&nbsp;(ɑ<sub>i-1</sub>)&nbsp;R<sub>Z</sub>&nbsp;(θ<sub>i</sub>)&nbsp;R<sub>Z</sub>&nbsp;(d<sub>i</sub>)&nbsp;
 
 $$
-{^N_iT} =\ {R_X (\alpha_{i-1}) D_X (a_{i-1}) R_Z (\theta_i) D_Z (d_i)}
+{^i-1_iT} =\ {R_X (\alpha_{i-1}) D_X (a_{i-1}) R_Z (\theta_i) D_Z (d_i)}
 $$
 
 $^{N-1}_NT =\ R_{i - 2}\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT$

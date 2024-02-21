@@ -775,7 +775,7 @@ $$
 \end{equation}
 $$
 
-$^{i-1}_iT$ = $R_X$ &nbsp; $(\alpha_{i-1})$
+$^{i-1}_iT$ = $R_X (\alpha_{i-1})$
 
 $^{i-1}_iT =$ R<sub>X</sub>&nbsp;(α<sub>i-1</sub>)&nbsp;D<sub>X</sub>&nbsp;(ɑ<sub>i-1</sub>)&nbsp;R<sub>Z</sub>&nbsp;(θ<sub>i</sub>)&nbsp;R<sub>Z</sub>&nbsp;(d<sub>i</sub>)&nbsp;
 

@@ -567,7 +567,7 @@ As shown in figure 3.9, the position of the end-effector is known relative to *i
 Point P relative to frame *W* can be found by successively applying equation (4) between adjacent joints. More specifically, 
 
 $$
-^W\boldsymbol{\vec{r}}_{\frac{P}{W_0}} =\ ^W_CT\ \cdot\ ^C\boldsymbol{\vec{r}}_{\frac{P}{C_0}}
+^W\ \vec r_{\frac{P}{W_0}} =\ ^W_CT\ \cdot\ ^C \vec r_{\frac{P}{C_0}}
 $$
 
 where $\ ^W_CT =\ ^B_CT \cdot\ ^A_BT \cdot\ ^W_AT$
@@ -576,37 +576,43 @@ Using the point $P_{C} (0.5, 0, 17)$ vector relative to frame C, we first comput
 
 $$
 \begin{align}
-    ^B\boldsymbol{\vec{r}}_{\frac{P}{B_0}}  &= 
+    ^B \vec r_{\frac{P}{B_0}} &= 
   \left[\begin{array}{ccc:c}
-    & ^B_CR  & &  ^B\boldsymbol{\vec{r}}_{\frac{C_0}{B_0}} \\ \hdashline
+    & ^B_CR  & &  ^B \vec r_{\frac{C_0}{B_0}} \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
-     ^C\boldsymbol{\vec{r}}_{\frac{P}{C_0}} \\ \hdashline
+    ^C \vec r_{\frac{P}{C_0}} \\ 
+    \hdashline
     1 \\
   \end{array}\right] \\ &= 
   \left[\begin{array}{ccc:c}
     \cos(60) & 0 & \sin(60) &  0 \\ 
     0 & 1  & 1 & 0 \\
-    -\sin(60) & 0  & \cos(60) &  34 \\ \hdashline
+    -\sin(60) & 0  & \cos(60) &  34 \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
     0.5 \\
     0 \\
-    17 \\ \hdashline
+    17 \\ 
+    \hdashline
     1 \\
   \end{array}\right] \\ &= 
   \left[\begin{array}{c}
     0.5\cos(60) + 17\sin(60) + 0  \\ 
     0  \\
-    -0.5\sin(60) + 17\cos(60) + 34 \\ \hdashline
+    -0.5\sin(60) + 17\cos(60) + 34 \\ 
+    \hdashline
     1 \\
   \end{array}\right] =
   \left[\begin{array}{c}
     15 \\
     0 \\
-    42 \\ \hdashline
+    42 \\ 
+    \hdashline
     1 \\
   \end{array}\right]
   \end{align}
@@ -616,38 +622,44 @@ We then use this point $P_{B} (15, 0, 42)$ vector relative to to frame B to simi
 
 $$
 \begin{align}
-    ^A\boldsymbol{\vec{r}}_{\frac{P}{A_0}}
+    ^A \vec r_{\frac{P}{A_0}}
     &= 
   \left[\begin{array}{ccc:c}
-    & ^A_BR  & &  ^A\boldsymbol{\vec{r}}_{\frac{B_0}{A_0}} \\ \hdashline
+    & ^A_BR  & &  ^A \vec r_{\frac{B_0}{A_0}} \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
-     ^B\boldsymbol{\vec{r}}_{\frac{P}{B_0}} \\ \hdashline
+    ^B \vec r_{\frac{P}{B_0}} \\ 
+    \hdashline
     1 \\
   \end{array}\right] \\ &= 
   \left[\begin{array}{ccc:c}
     \cos(110) & 0 & \sin(110) &  1 \\ 
     0 & 1  & 1 & 0 \\
-    -\sin(110) & 0  & \cos(110) &  30 \\ \hdashline
+    -\sin(110) & 0  & \cos(110) &  30 \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
     15 \\
     0 \\
-    42 \\ \hdashline
+    42 \\ 
+    \hdashline
     1 \\
   \end{array}\right] \\ &= 
   \left[\begin{array}{c}
     15\cos(110) + 42\sin(110) + 1  \\ 
     0  \\
-    -15\sin(110) + 42\cos(110) + 30 \\ \hdashline
+    -15\sin(110) + 42\cos(110) + 30 \\ 
+    \hdashline
     1 \\
   \end{array}\right] =
   \left[\begin{array}{c}
     35 \\
     0 \\
-    1.5 \\ \hdashline
+    1.5 \\ 
+    \hdashline
     1 \\
   \end{array}\right]
   \end{align}
@@ -657,40 +669,46 @@ And finally, using this point $P_{A} (15, 0, 42)$ vector *relative to* frame A, 
 
 $$
 \begin{align}
-    ^W\boldsymbol{\vec{r}}_{\frac{P}{W_0}}
+    ^W \vec r_{\frac{P}{W_0}}
     &= 
   \left[\begin{array}{ccc:c}
-    & ^W_AR  & &  ^W\boldsymbol{\vec{r}}_{\frac{A_0}{W_0}} \\ \hdashline
+    & ^W_AR  & &  ^W \vec r_{\frac{A_0}{W_0}} \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
-     ^W\boldsymbol{\vec{r}}_{\frac{P}{W_0}} \\ \hdashline
+    ^W \vec r_{\frac{P}{W_0}} \\ 
+    \hdashline
     1 \\
   \end{array}\right] \\
    &= 
   \left[\begin{array}{ccc:c}
     \cos(-20) & 0 & \sin(-20) & 10 \\ 
     0 & 1  & 1 & 0 \\
-    -\sin(-20) & 0  & \cos(-20) & 15 \\ \hdashline
+    -\sin(-20) & 0  & \cos(-20) & 15 \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
     35 \\
     0 \\
-    1.5 \\ \hdashline
+    1.5 \\ 
+    \hdashline
     1 \\
   \end{array}\right] \\
   &= 
   \left[\begin{array}{c}
     35\cos(-20) + 1.5\sin(-20) + 10 \\ 
     0  \\
-    -35\sin(-20) + 1.5\cos(-20) + 15 \\ \hdashline
+    -35\sin(-20) + 1.5\cos(-20) + 15 \\ 
+    \hdashline
     1 \\
   \end{array}\right] =
   \left[\begin{array}{c}
     42 \\
     0 \\
-    28 \\ \hdashline
+    28 \\
+    \hdashline
     1 \\
   \end{array}\right]
   \end{align}
@@ -747,9 +765,7 @@ $$
 where the base frame is denoted by *0* and the end-effector's frame denoted by *N*. Thus, $^0_NT$ defines the homogeneous transformation that projects frame *N* onto frame *0*. More specifically, a single transform between links $i-1$ and $i$ is made up up of two rotations *R* of magnitudes α and θ, and two displacements *D* of magnitudes ɑ and d.
 
 $$
-\begin{equation}
-  ^{i-1}_iT =\ R_X(\alpha_{i-1})\ D_X(a_{i-1}) R_Z(\theta_i)D_Z(d_i)
-\end{equation}
+^{i-1}_iT =\ R_X (\alpha_{i-1}) D_X (a_{i-1}) R_Z (\theta_i) D_Z (d_i)
 $$
 <!--<p align="center">
 <img src="figures/3-theory/dh_eq_2.png" alt="" width="55%">
@@ -761,9 +777,10 @@ $$
 \begin{equation}
   ^{i-1}_iT =
   \left[\begin{array}{ccc:c}
-    c(\theta_i) & -s(\theta_i)  & 0 & a_{i-1} \\ 
-    s(\theta_i)c(\alpha_{i-1}) & c(\theta_i)c(\alpha_{i-1}) & -s(\alpha_{i-1}) & -s(a_{i-1})d_i  \\
-     s(\theta_i)s(\alpha_{i-1}) & c(\theta_i)s(\alpha_{i-1}) & c(\alpha_{i-1}) & c(\alpha_{i-1})d_i \\ \hdashline
+    c (\theta_i) & -s (\theta_i)  & 0 & a_{i-1} \\ 
+    s (\theta_i) c (\alpha_{i-1}) & c (\theta_i) c (\alpha_{i-1}) & -s (\alpha_{i-1}) & -s (a_{i-1}) d_i  \\
+     s (\theta_i) s (\alpha_{i-1}) & c (\theta_i) s (\alpha_{i-1}) & c (\alpha_{i-1}) & c (\alpha_{i-1}) d_i \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
 \end{equation}
@@ -977,7 +994,7 @@ The last step is implemented using table 5.1 which is constructed from the KR210
 <br>
 <sup><b>Table 5 &nbsp;&nbsp; Location of joint {i} relative to its parent joint {i-1} from the KR210 URDF file</b></sup>
 <br>
-<style>td,th,tr{border-collapse:collapse;background-color:transparent!important;border-right:1px solid;text-align:center;font-family:"CMU Serif Roman",Times,serif}tr{line-height:80%!important}</style><table><tr><td style="border:3px solid">Joint name</td><td style="border:3px solid;border-right:1px solid">Parent Link</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid">Child link</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>x(m)</i></td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>y(m)</i></td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>z(m)</i></td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>roll</i></td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>pitch</i></td><td style="border:3px solid;border-left:1px solid"><i>yaw</i></td><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_1</td><td style="border-right:1px solid;border-bottom-color:transparent">base_link</td><td style="border-right:1px solid;border-bottom-color:transparent">link_1</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0.33</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_2</td><td style="border-right:1px solid;border-bottom-color:transparent">link_1</td><td style="border-right:1px solid;border-bottom-color:transparent">link_2</td><td style="border-right:1px solid;border-bottom-color:transparent">0.35</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0.42</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_3</td><td style="border-right:1px solid;border-bottom-color:transparent">link_2</td><td style="border-right:1px solid;border-bottom-color:transparent">link_3</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">1.25</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_4</td><td style="border-right:1px solid;border-bottom-color:transparent">link_3</td><td style="border-right:1px solid;border-bottom-color:transparent">link_4</td><td style="border-right:1px solid;border-bottom-color:transparent">0.96</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">-0.054</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_5</td><td style="border-right:1px solid;border-bottom-color:transparent">link_4</td><td style="border-right:1px solid;border-bottom-color:transparent">link_5</td><td style="border-right:1px solid;border-bottom-color:transparent">0.54</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_6</td><td style="border-right:1px solid;border-bottom-color:transparent">link_5</td><td style="border-right:1px solid;border-bottom-color:transparent">link_6</td><td style="border-right:1px solid;border-bottom-color:transparent">0.193</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid">gripper_joint</td><td style="border-right:1px solid">link6</td><td style="border-right:1px solid">link_7</td><td style="border-right:1px solid">0.11</td><td style="border-right:1px solid">0</td><td style="border-right:1px solid">0</td><td style="border-right:1px solid">0</td><td style="border-right:1px solid">0</td><td style="border-right:3px solid">0</td></tr><tr><td colspan="3" style="border:3px solid;border-right:1px solid;border-bottom:3px soild">TOTAL</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid">2.153</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid">0</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid">1.946</td><td colspan="3" style="border:3px solid;border-left:1px solid"></td></tr></table>
+<table><tr><td style="border:3px solid !important">Joint name</td><td style="border:3px solid;border-right:1px solid">Parent Link</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid">Child link</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>x(m)</i></td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>y(m)</i></td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>z(m)</i></td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>roll</i></td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid"><i>pitch</i></td><td style="border:3px solid;border-left:1px solid"><i>yaw</i></td><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_1</td><td style="border-right:1px solid;border-bottom-color:transparent">base_link</td><td style="border-right:1px solid;border-bottom-color:transparent">link_1</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0.33</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_2</td><td style="border-right:1px solid;border-bottom-color:transparent">link_1</td><td style="border-right:1px solid;border-bottom-color:transparent">link_2</td><td style="border-right:1px solid;border-bottom-color:transparent">0.35</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0.42</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_3</td><td style="border-right:1px solid;border-bottom-color:transparent">link_2</td><td style="border-right:1px solid;border-bottom-color:transparent">link_3</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">1.25</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_4</td><td style="border-right:1px solid;border-bottom-color:transparent">link_3</td><td style="border-right:1px solid;border-bottom-color:transparent">link_4</td><td style="border-right:1px solid;border-bottom-color:transparent">0.96</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">-0.054</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_5</td><td style="border-right:1px solid;border-bottom-color:transparent">link_4</td><td style="border-right:1px solid;border-bottom-color:transparent">link_5</td><td style="border-right:1px solid;border-bottom-color:transparent">0.54</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid;border-bottom-color:transparent">joint_6</td><td style="border-right:1px solid;border-bottom-color:transparent">link_5</td><td style="border-right:1px solid;border-bottom-color:transparent">link_6</td><td style="border-right:1px solid;border-bottom-color:transparent">0.193</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:1px solid;border-bottom-color:transparent">0</td><td style="border-right:3px solid;border-bottom-color:transparent">0</td></tr><tr><td style="border-left:3px solid;border-right:3px solid">gripper_joint</td><td style="border-right:1px solid">link6</td><td style="border-right:1px solid">link_7</td><td style="border-right:1px solid">0.11</td><td style="border-right:1px solid">0</td><td style="border-right:1px solid">0</td><td style="border-right:1px solid">0</td><td style="border-right:1px solid">0</td><td style="border-right:3px solid">0</td></tr><tr><td colspan="3" style="border:3px solid;border-right:1px solid;border-bottom:3px soild">TOTAL</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid">2.153</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid">0</td><td style="border-top:3px solid;border-bottom:3px solid;border-right:1px solid">1.946</td><td colspan="3" style="border:3px solid;border-left:1px solid"></td></tr></table>
 <br>
 
 Note the following concerning the URDF file and table 5.1,
@@ -1014,9 +1031,10 @@ $$
 \begin{equation}
   ^{i-1}_iT =
   \left[\begin{array}{ccc:c}
-    c(\theta_i) & -s(\theta_i)  & 0 & a_{i-1} \\ 
-    s(\theta_i)c(\alpha_{i-1}) & c(\theta_i)c(\alpha_{i-1}) & -s(\alpha_{i-1}) & -s(a_{i-1})d_i  \\
-     s(\theta_i)s(\alpha_{i-1}) & c(\theta_i)s(\alpha_{i-1}) & c(\alpha_{i-1}) & c(\alpha_{i-1})d_i \\ \hdashline
+    c (\theta_i) & -s (\theta_i)  & 0 & a_{i-1} \\ 
+    s (\theta_i) c (\alpha_{i-1}) & c (\theta_i) c (\alpha_{i-1}) & -s (\alpha_{i-1}) & -s (a_{i-1}) d_i  \\
+     s (\theta_i) s (\alpha_{i-1}) & c (\theta_i) s (\alpha_{i-1}) & c (\alpha_{i-1}) & c (\alpha_{i-1}) d_i \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
 \end{equation}
@@ -1059,52 +1077,59 @@ The position vector of WC relative to EE (**r**<sub>WC/EE<sub>O</sub></sub>) is 
 <img src="figures/5-implementation/wc_calc_v2.png" alt="" width="62%">
 </p>-->
 $$
-^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} =\ ^0_{EE}T\ \cdot\ ^{EE}\boldsymbol{\vec{r}}_{\frac{WC}{EE_0}}
+^O \vec r_{\frac{WC}{O_0}} =\ ^0_{EE}T\ \cdot\ ^{EE} \vec r_{\frac{WC}{EE_0}}
 $$
 
 $$
-^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} =\ ^O\boldsymbol{\vec{r}}_{\frac{EE}{O_0}} -\ ^0_{EE}R\ \cdot\ ^{EE}\boldsymbol{\vec{r}}_{\frac{WC}{EE_0}}
+^O \vec r_{\frac{WC}{O_0}} =\ ^O \vec r_{\frac{EE}{O_0}} -\ ^0_{EE}R\ \cdot\ ^{EE} \vec r_{\frac{WC}{EE_0}}
 $$
 
 $$
   \left[\begin{array}{c}
-    ^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} \\ \hdashline
+    ^O \vec r_{\frac{WC}{O_0}} \\ 
+    \hdashline
     1 \\
   \end{array}\right]\ =\ 
   \left[\begin{array}{ccc:c}
-    & ^0_{EE}R  & &  ^O\boldsymbol{\vec{r}}_{\frac{EE}{O_0}} \\ \hdashline
+    & ^0_{EE}R  & &  ^O \vec r_{\frac{EE}{O_0}} \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]\
   \left[\begin{array}{c}
-     ^{EE}\boldsymbol{\vec{r}}_{\frac{WC}{EE_0}} \\ \hdashline
+    ^{EE} \vec r_{\frac{WC}{EE_0}} \\ 
+    \hdashline
     1 \\
   \end{array}\right]
 $$
 
 $$
   \left[\begin{array}{c}
-    ^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} \\ \hdashline
+    ^O \vec r_{\frac{WC}{O_0}} \\ 
+    \hdashline
     1 \\
   \end{array}\right]\ =\ 
   \left[\begin{array}{ccc:c}
     r_{11} & r_{12} & r_{13} & ee_x \\ 
     r_{21} & r_{22} & r_{23} & ee_y \\
-    r_{31} & r_{32} & r_{33} & ee_z \\ \hdashline
+    r_{31} & r_{32} & r_{33} & ee_z \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]\
   \left[\begin{array}{c}
-     ^{EE}\boldsymbol{\vec{r}}_{\frac{WC}{EE_0}} \\ \hdashline
+    ^{EE} \vec r_{\frac{WC}{EE_0}} \\ 
+    \hdashline
     1 \\
   \end{array}\right]
 $$
 
 $$
-^O\boldsymbol{\vec{r}}_{\frac{WC}{O_0}} =\ ^O\boldsymbol{\vec{r}}_{\frac{EE}{O_0}} -\ d_{EE}\cdot\ ^0_{EE}R\
-\left[\begin{array}{c}
+^O \vec r_{\frac{WC}{O_0}} =\ 
+^O \vec r_{\frac{EE}{O_0}} -\ d_{EE}\cdot\ ^0_{EE}R\ 
+\begin{bmatrix}
     0 \\
     0 \\
     1 \\
-  \end{array}\right]
+\end{bmatrix}
 $$
 
 $$
@@ -1196,7 +1221,7 @@ $$
 where the sag angle is,
 
 $$
-sag = \arctan (\frac{a3}{b1})
+sag = \arctan (\frac{a_3}{b_1})
 $$
 
 <!--<p align="center">
@@ -1227,11 +1252,11 @@ $$
 where $^{i-1}_iR$ is the composite rotation matrix from the homogeneous transform $^{i-1}_iT$,
 
 $$
-  ^{i-1}_iR =
-  \begin{bmatrix}
-    c(\theta_i) & -s(\theta_i)  & 0 \\ 
-    s(\theta_i)c(\alpha_{i-1}) & c(\theta_i)c(\alpha_{i-1}) & -s(\alpha_{i-1}) \\
-     s(\theta_i)s(\alpha_{i-1}) & c(\theta_i)s(\alpha_{i-1}) & c(\alpha_{i-1}) 
+^{i-1}_iR = 
+\begin{bmatrix}
+  c (\theta_i) & -s (\theta_i) & 0 \\ 
+  s (\theta_i) c (\alpha_{i-1}) & c (\theta_i) c (\alpha_{i-1}) & -s (\alpha_{i-1}) \\
+  s (\theta_i) s (\alpha_{i-1}) & c (\theta_i) s (\alpha_{i-1}) & c (\alpha_{i-1}) 
 \end{bmatrix}
 $$
 

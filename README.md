@@ -485,17 +485,6 @@ In the case where a reference frame is both simultaneously rotated *and* transla
 
 In figure 3.7, point P is expressed relative to frame B and the objective is to express it relative to frame A. To do so would require projecting or superimposing frame B onto frame A i.e. first rotating frame B to orient it with frame A and then translating it such that the centers B<sub>0</sub> and A<sub>0</sub> of both frames are aligned.
 
-BEGIN Testing TeX
-$$
-\vec r_{\frac{P}{A}}\ +\ \vec r_{\frac{P}{B}}
-$$
-
-$$
-\vec a_{\frac{x}{y}} \cdot \boldsymbol{\vec b_{\frac{x}{y}}}
-$$
-
-END Testing TeX
-
 $$
 ^A \vec r_{\frac{P}{A_0}} =\ ^A_BT\ \cdot\ ^B \vec r_{\frac{P}{B_0}}
 $$
@@ -529,19 +518,22 @@ $$
   \left[\begin{array}{c}
     r_{Ax} \\
     r_{Ay} \\
-    r_{Az} \\ \hdashline
+    r_{Az} \\ 
+    \hdashline
     1 \\
   \end{array}\right] = 
   \left[\begin{array}{ccc:c}
     r_{11} & r_{12}  & r_{13} &  r_{BAx} \\ 
     r_{21} & r_{22}  & r_{23} &  r_{BAy} \\
-    r_{31} & r_{32}  & r_{33} &  r_{BAz} \\ \hdashline
+    r_{31} & r_{32}  & r_{33} &  r_{BAz} \\ 
+    \hdashline
     0 & 0 & 0 & 1 \\
   \end{array}\right]
   \left[\begin{array}{c}
     r_{Bx} \\
     r_{By} \\
-    r_{Bz} \\ \hdashline
+    r_{Bz} \\ 
+    \hdashline
     1 \\
   \end{array}\right]
 \end{equation}

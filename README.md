@@ -770,6 +770,12 @@ $$
 where the base frame is denoted by *0* and the end-effector's frame denoted by *N*. Thus, $^0_NT$ defines the homogeneous transformation that projects frame *N* onto frame *0*. More specifically, a single transform between links $i-1$ and $i$ is made up up of two rotations *R* of magnitudes α and θ, and two displacements *D* of magnitudes ɑ and d.
 
 $$
+\begin{equation}
+  ^{N-1}_NT =\ ^0_1T\ ^1_2T\ ^2_3T \cdots\ ^{N-1}_NT
+\end{equation}
+$$
+
+$$
 \ ^{i-1}{_i}T = R_X (\alpha_{i-1}) D_X (a_{i - 1}) R_Z (\theta_i) D_Z (d_i)
 $$
 <!--<p align="center">

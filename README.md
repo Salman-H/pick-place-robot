@@ -508,6 +508,7 @@ $$
 \begin{equation}
   \left[\begin{array}{c}
     ^A \vec r_{\frac{P}{A_0}} \\
+    \hdashline
     1 \\
   \end{array}\right] = 
   \left[\begin{array}{ccc:c}

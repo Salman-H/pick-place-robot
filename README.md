@@ -1300,23 +1300,8 @@ Joint angles, $\theta_4$, $\theta_5$, and $\theta_6$ can then be analytically de
 <br>
 
 $$
-\begin{flalign}
-\frac{r_{33}}{-r_{13}} &= \frac{\sin\theta_4\sin\theta_5}{\cos\theta_4\sin\theta_5} = \frac{\sin\theta_4}{\cos\theta_4} = \tan\theta_4 \\
-\therefore\ \boldsymbol{\theta_4} &= \arctan\frac{r_{33}}{-r_{13}}
-\end{flalign}
-$$
-
-<br>
-
-$$
 \begin{align}
-\frac{\sqrt{r^2_{13} + r^2_{33}}}{r_{23}} &= \frac{\sqrt{(\cos\theta_4\sin\theta_5)^2 + (\sin\theta_4\sin\theta_5)^2}}{\cos\theta_5} \\
-&= \frac{\sqrt{\cos^2\theta_4\sin^2\theta_5 + \sin^2\theta_4\sin^2\theta_5}}{\cos\theta_5} \\
-&= \frac{\sqrt{\sin^2\theta_5\ ( \cos^2\theta_4 + \sin^2\theta_4)}}{\cos\theta_5} \\
-&= \frac{\sqrt{\sin^2\theta_5\ ( 1)}}{\cos\theta_5} \\
-&= \frac{\sin\theta_5}{\cos\theta_5} \\
-&= \tan\theta_5 \\
-\therefore\ \boldsymbol{\theta_5} &= \arctan\frac{\sqrt{r^2_{13} + r^2_{33}}}{r_{23}}
+ \frac{r_{33}}{-r_{13}} = \frac{\sin\theta_4\sin\theta_5}{\cos\theta_4\sin\theta_5} = \frac{\sin\theta_4}{\cos\theta_4} = \tan\theta_4\quad \therefore\ \boldsymbol{\theta_4} = \arctan\frac{r_{33}}{-r_{13}}
 \end{align}
 $$
 
@@ -1324,11 +1309,18 @@ $$
 
 $$
 \begin{align}
-\frac{-r_{22}}{r_{21}} 
-&= \frac{\sin\theta_5\sin\theta_6}{\sin\theta_5\sin\theta_6} \\
-&= \frac{\sin\theta_6}{\cos\theta_6}\\
-&= \tan\theta_6 \\
-\therefore\ \boldsymbol{\theta_6} &= \arctan\frac{r_{33}}{-r_{13}}
+\frac{\sqrt{r^2_{13} + r^2_{33}}}{r_{23}} &= \frac{\sqrt{(\cos\theta_4\sin\theta_5)^2 + (\sin\theta_4\sin\theta_5)^2}}{\cos\theta_5} = \frac{\sqrt{\cos^2\theta_4\sin^2\theta_5 + \sin^2\theta_4\sin^2\theta_5}}{\cos\theta_5} \\ 
+&= \frac{\sqrt{\sin^2\theta_5\ ( \cos^2\theta_4 + \sin^2\theta_4)}}{\cos\theta_5} = \frac{\sqrt{\sin^2\theta_5\ ( 1)}}{\cos\theta_5} = \frac{\sin\theta_5}{\cos\theta_5} = \tan\theta_5 \\
+ \therefore\ \boldsymbol{\theta_5} &= \arctan\frac{\sqrt{r^2_{13} + r^2_{33}}}{r_{23}}
+ \end{align}
+$$
+
+<br>
+
+$$
+\begin{align}
+\frac{-r_{22}}{r_{21}} = \frac{\sin\theta_5\sin\theta_6}{\sin\theta_5\sin\theta_6} = \frac{\sin\theta_6}{\cos\theta_6} = \tan\theta_6 \quad
+\therefore\ \boldsymbol{\theta_6} = \arctan\frac{r_{33}}{-r_{13}}
 \end{align}
 $$
 
